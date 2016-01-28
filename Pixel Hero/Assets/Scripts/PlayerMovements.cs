@@ -27,18 +27,36 @@ public class PlayerMovements : MonoBehaviour {
 
         // Move the player around the scene.
         Move(h, v);
+
+        GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
     }
 
 
     void Move(float h, float v)
     {
+        if (transform.position.x <= -10 && h < 0)
+            h = 0;
+
         // Set the movement vector based on the axis input.
         move.Set(h, v, 0f);
 
         //Move current position using ClampMagnitude to normalize the diagonal run speed.
         playerRigidbody.MovePosition(transform.position + Vector3.ClampMagnitude(move, 1.0f) * speed * Time.deltaTime);
 
-        bool walking = h != 0f || v != 0f;
-        anim.SetBool("IsWalking", walking);
+        bool up = (v > 0);
+        anim.SetBool("Up", up);
+
+        bool down = (v < 0);
+        anim.SetBool("Down", down);
+
+        bool right = (h > 0);
+        anim.SetBool("Right", right);
+
+        bool left = (h < 0);
+        anim.SetBool("Left", left);
+
+      
+
+
     }
 }
