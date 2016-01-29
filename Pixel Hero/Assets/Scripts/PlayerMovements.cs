@@ -34,9 +34,6 @@ public class PlayerMovements : MonoBehaviour {
 
     void Move(float h, float v)
     {
-        if (transform.position.x <= -10 && h < 0)
-            h = 0;
-
         // Set the movement vector based on the axis input.
         move.Set(h, v, 0f);
 
@@ -54,9 +51,6 @@ public class PlayerMovements : MonoBehaviour {
 
         bool left = (h < 0);
         anim.SetBool("Left", left);
-
-      
-
 
     }
 }
