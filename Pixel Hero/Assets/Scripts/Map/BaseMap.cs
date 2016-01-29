@@ -37,22 +37,22 @@ public class BaseMap : MonoBehaviour
         {
             for (int j = 0; j < roomGridX; j++)
             {
-                for (int iPos = 0; iPos < standartRoomHeight; iPos++)
+                for (int y = 0; y < standartRoomHeight; y++)
                 {
-                    for (int jPos = 0; jPos < standartRoomWidth; jPos++)
+                    for (int x = 0; x < standartRoomWidth; x++)
                     {
-                        int tile = tabRooms[i, j].getTile(iPos, jPos);
+                        int tile = tabRooms[i, j].getTile(y, x);
 
                         switch (tile)
                         {
+                            case 2:
                             case 0:
-                                Instantiate(floorList[Random.Range(0, floorList.Count - 1)], new Vector3(tabRooms[i, j].getXpos(jPos), tabRooms[i, j].getYpos(iPos), 0), Quaternion.identity);
+                                GameObject floorClone = (GameObject)Instantiate(floorList[Random.Range(0, floorList.Count - 1)], new Vector3(tabRooms[i, j].GridPosX + x, tabRooms[i, j].GridPosY + y, 0), Quaternion.identity);
+                                floorClone.transform.parent = transform;
                                 break;
                             case 1:
-                                Instantiate(borderList[Random.Range(0, borderList.Count - 1)], new Vector3(tabRooms[i, j].getXpos(jPos), tabRooms[i, j].getYpos(iPos), 0), Quaternion.identity);
-                                break;
-                            case 2:
-                                Instantiate(floorList[Random.Range(0, floorList.Count - 1)], new Vector3(tabRooms[i, j].getXpos(jPos), tabRooms[i, j].getYpos(iPos), 0), Quaternion.identity);
+                                GameObject boundClone = (GameObject)Instantiate(borderList[Random.Range(0, borderList.Count - 1)], new Vector3(tabRooms[i, j].GridPosX + x, tabRooms[i, j].GridPosY + y, 0), Quaternion.identity);
+                                boundClone.transform.parent = transform;
                                 break;
                         }
                     }
