@@ -6,30 +6,63 @@ public class BaseMap : MonoBehaviour
 {
     public List<GameObject> floorList = new List<GameObject>();
     public List<GameObject> borderList = new List<GameObject>();
-    static public int standartRoomHeight = 13;
-    static public int standartRoomWidth = 19;
+    public GameObject SpawnPoint;
+    public GameObject player;
+
+    static public int roomHeight = 13;
+    static public int roomWidth = 19;
     public int roomGridX = 10;
     public int roomGridY = 10;
-    public int pourcentageRoom = 75;
+    public int numberOfRoom = 15;
+    public int groupingFactor = 50;
 
     // Use this for initialization
     void Start()
     {
-        PrintRooms();
+        Room[,] tabRooms = new Room[roomGridY, roomGridX];
+        int[,] map = new int[roomGridY, roomGridX];
+
+        InitialiseRooms(tabRooms, map);
+        GenerateDungeon(tabRooms, map);
+        PrintRooms(tabRooms);
+        SpawnPlayer();
     }
 
-    void PrintRooms()
+
+    void GenerateDungeon(Room[,] tabRooms, int[,] map)
     {
-        StandartRoom[,] tabRooms = new StandartRoom[roomGridY, roomGridX];
-        
-        for (int i = 0; i < roomGridY; i++)
+        int roomCounter = 1;
+        int endTimer = 1000;
+        while (roomCounter < numberOfRoom && endTimer != 0)
         {
-            for (int j = 0; j < roomGridX; j++)
+            endTimer--;
+            for (int i = 1; i < roomGridY - 1; i++)
             {
-                tabRooms[i, j] = new StandartRoom(standartRoomWidth, standartRoomHeight, j * standartRoomWidth, i * standartRoomHeight);
-                int number = Random.Range(0, 100);
-                if (number <= 100 - pourcentageRoom)
-                    tabRooms[i, j].nullifyRoom();
+                for (int j = 1; j < roomGridX - 1; j++)
+                {
+                    if (map[i, j] != 0 && map[i, j] != 2)
+                    {
+                        if ((map[i + 1, j] == 0) && (Random.Range(0, 100) <= groupingFactor) && (roomCounter < numberOfRoom) && (i >= roomGridY / 2))
+                        {
+                            map[i + 1, j] = 9; roomCounter++;
+                        }
+                        if ((map[i - 1, j] == 0) && (Random.Range(0, 100) <= groupingFactor) && (roomCounter < numberOfRoom) && (i <= roomGridY / 2))
+                        {
+                            map[i - 1, j] = 9; roomCounter++;
+                        }
+                        if ((map[i, j + 1] == 0) && (Random.Range(0, 100) <= groupingFactor) && (roomCounter < numberOfRoom) && (j >= roomGridX / 2))
+                        {
+                            map[i, j + 1] = 9; roomCounter++;
+                        }
+                        if ((map[i, j - 1] == 0) && (Random.Range(0, 100) <= groupingFactor) && (roomCounter < numberOfRoom) && (j <= roomGridX / 2))
+                        {
+                            map[i, j - 1] = 9; roomCounter++;
+                        }
+
+                        if (map[i, j] == 9)
+                            map[i, j] = 2;
+                    }
+                }
             }
         }
 
@@ -37,26 +70,48 @@ public class BaseMap : MonoBehaviour
         {
             for (int j = 0; j < roomGridX; j++)
             {
-                for (int y = 0; y < standartRoomHeight; y++)
+                if (map[i, j] == 2)
                 {
-                    for (int x = 0; x < standartRoomWidth; x++)
-                    {
-                        int tile = tabRooms[i, j].getTile(y, x);
-
-                        switch (tile)
-                        {
-                            case 2:
-                            case 0:
-                                GameObject floorClone = (GameObject)Instantiate(floorList[Random.Range(0, floorList.Count - 1)], new Vector3(tabRooms[i, j].GridPosX + x, tabRooms[i, j].GridPosY + y, 0), Quaternion.identity);
-                                floorClone.transform.parent = transform;
-                                break;
-                            case 1:
-                                GameObject boundClone = (GameObject)Instantiate(borderList[Random.Range(0, borderList.Count - 1)], new Vector3(tabRooms[i, j].GridPosX + x, tabRooms[i, j].GridPosY + y, 0), Quaternion.identity);
-                                boundClone.transform.parent = transform;
-                                break;
-                        }
-                    }
+                    tabRooms[i, j] = gameObject.AddComponent<StandartRoom>();
+                    tabRooms[i, j].SetAttributes(roomWidth, roomHeight, j * roomWidth, i * roomHeight);
                 }
+            }
+        }
+
+    }
+
+    void InitialiseRooms(Room[,] tabRooms, int[,] map)
+    {
+        for (int i = 0; i < roomGridY; i++)
+        {
+            for (int j = 0; j < roomGridX; j++)
+            {
+                tabRooms[i, j] = gameObject.AddComponent<StandartRoom>();
+                tabRooms[i, j].SetAttributes(roomWidth, roomHeight, j * roomWidth, i * roomHeight);
+                tabRooms[i, j].nullifyRoom();
+
+                map[i, j] = 0;
+            }
+        }
+
+        tabRooms[(roomGridY / 2), (roomGridX / 2)] = gameObject.AddComponent<StartingRoom>();
+        tabRooms[(roomGridY / 2), (roomGridX / 2)].SetAttributes(roomWidth, roomHeight, (roomGridX / 2) * roomWidth, (roomGridY / 2) * roomHeight);
+
+        map[(roomGridY / 2), (roomGridX / 2)] = 1;
+    }
+
+    void SpawnPlayer()
+    {
+        player.transform.position = SpawnPoint.transform.position;
+    }
+
+    void PrintRooms(Room[,] tabRooms)
+    {
+        for (int i = 0; i < roomGridY; i++)
+        {
+            for (int j = 0; j < roomGridX; j++)
+            {
+                tabRooms[i,j].SpawnRoom(floorList, borderList, SpawnPoint);
             }
         }
     }

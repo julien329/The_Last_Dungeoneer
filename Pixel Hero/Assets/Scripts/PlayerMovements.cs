@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerMovements : MonoBehaviour {
 
     public float speed = 8.0f;
+    public Transform SpawnPoint;
 
     Vector3 move;
     Rigidbody2D playerRigidbody;
@@ -19,9 +20,6 @@ public class PlayerMovements : MonoBehaviour {
 
     void FixedUpdate()
     {
-        // Move senteces
-        //playerRigidbody.velocity = new Vector2(Mathf.Lerp(0, Input.GetAxis("Horizontal") * speed, 0.8f), Mathf.Lerp(0, Input.GetAxis("Vertical") * speed, 0.8f));
-
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
