@@ -13,22 +13,23 @@ public class PlayerMovements : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        // Get required components
         anim = GetComponent<Animator>();
         playerRigidbody = GetComponent<Rigidbody2D>();
     }
 
-
     void FixedUpdate()
     {
+        // Get vertical/horizontal input value with wasd or arrows
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
         // Move the player around the scene.
         Move(h, v);
 
+        // Set sprite sorting order according to vertical position
         GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
     }
-
 
     void Move(float h, float v)
     {
@@ -38,15 +39,19 @@ public class PlayerMovements : MonoBehaviour {
         //Move current position using ClampMagnitude to normalize the diagonal run speed.
         playerRigidbody.MovePosition(transform.position + Vector3.ClampMagnitude(move, 1.0f) * speed * Time.deltaTime);
 
+        // Walk/idle up animation
         bool up = (v > 0);
         anim.SetBool("Up", up);
 
+        // Walk/idle down animation
         bool down = (v < 0);
         anim.SetBool("Down", down);
 
+        // Walk/idle down animation
         bool right = (h > 0);
         anim.SetBool("Right", right);
 
+        // Walk/idle down animation
         bool left = (h < 0);
         anim.SetBool("Left", left);
 
