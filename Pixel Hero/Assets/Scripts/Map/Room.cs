@@ -2,27 +2,43 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public abstract class Room : MonoBehaviour{
+public abstract class Room {
 
-    public abstract void SetAttributes(int width, int height, int x, int y);
-    public abstract void SpawnRoom(List<GameObject> floorList, List<GameObject> borderList, GameObject SpawnPoint);
     public abstract void CreateRoom();
 
-    public void nullifyRoom()
+    public void ConnectRoom(ref Room room)
     {
-        for (int i = 0; i < roomHeight; i++)
+        if (gridPosX > room.GridPosX)
         {
-            for (int j = 0; j < roomWidth; j++)
-            {
-                tabTiles[i][j] = 1;
-            }
+            tabTiles[roomHeight / 2][0] = 'D';
+            room.setTile((room.RoomHeight / 2), (room.RoomWidth - 1), 'D');
+
         }
-        isNull = true;
+        if (gridPosX < room.GridPosX)
+        {
+            tabTiles[roomHeight / 2][room.RoomWidth - 1] = 'D';
+            room.setTile((room.RoomHeight / 2), 0, 'D');
+        }
+        if (gridPosY > room.GridPosY)
+        {
+            tabTiles[0][roomWidth / 2] = 'D';
+            room.setTile((RoomHeight - 1), (room.RoomWidth / 2), 'D');
+        }
+        if (gridPosY < room.GridPosY)
+        {
+            tabTiles[RoomHeight - 1][roomWidth / 2] = 'D';
+            room.setTile(0, (room.RoomWidth / 2), 'D');
+        }
+
     }
 
-    public int getTile(int i, int j)
+    public char getTile(int i, int j)
     {
         return tabTiles[i][j];
+    }
+    public void setTile(int i, int j, char tile)
+    {
+        tabTiles[i][j] = tile;
     }
 
     public int RoomWidth
@@ -45,17 +61,16 @@ public abstract class Room : MonoBehaviour{
         get { return gridPosY; }
         set { gridPosY = value; }
     }
-    public bool IsNull
+    public bool IsScanned
     {
-        get { return isNull; }
-        set { isNull = value; }
+        get { return isScanned; }
+        set { isScanned = value; }
     }
 
-    protected int roomWidth { get; set; }
-    protected int roomHeight { get; set; }
-    protected int gridPosX { get; set; }
-    protected int gridPosY { get; set; }
-    protected bool isNull { get; set; }
-    protected List<List<int>> tabTiles= new List<List<int>>();
-    //protected int[,] tabTiles = new int[BaseMap.standartRoomHeight, BaseMap.standartRoomWidth];
+    protected int roomWidth;
+    protected int roomHeight;
+    protected int gridPosX;
+    protected int gridPosY;
+    protected bool isScanned;
+    protected List<List<char>> tabTiles= new List<List<char>>();
 }

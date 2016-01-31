@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 public class StandartRoom : Room {
 
-    public override void SetAttributes(int width, int height, int x, int y)     
+    public StandartRoom(int width, int height, int x, int y)     
     {
         roomWidth = width;
         roomHeight = height;
         gridPosX = x;
         gridPosY = y;
-        isNull = true;
+        isScanned = false;
 
         CreateRoom();
     }
@@ -19,64 +19,26 @@ public class StandartRoom : Room {
     {
         for (int i = 0; i < roomHeight; i++)
         {
-            List<int> subList = new List<int>();
+            List<char> subList = new List<char>();
             for (int j = 0; j < roomWidth; j++)
             {
-                int tile = 0;
+                char tile = 'N';
                 placeFloor(ref tile);
-                placeBounds(ref tile, j);
-                placeDoors(ref tile, j);
+                placeWall(ref tile, j);
 
                 subList.Add(tile);
             }
             tabTiles.Add(subList);
         }
-        isNull = false;
     }
 
-    public override void SpawnRoom(List<GameObject> floorList, List<GameObject> borderList, GameObject SpawnPoint)
+    private void placeFloor(ref char tile)
     {
-        for (int i = 0; i < roomHeight; i++)
-        {
-            for (int j = 0; j < roomWidth; j++)
-            {
-                switch (tabTiles[i][j])
-                {
-                    case 2:
-                    case 0:
-                        GameObject floorClone = (GameObject)Instantiate(floorList[Random.Range(0, floorList.Count - 1)], new Vector3(gridPosX + j, gridPosY + i, 0), Quaternion.identity);
-                        floorClone.transform.parent = transform;
-                        break;
-                    case 1:
-                        GameObject boundClone = (GameObject)Instantiate(borderList[Random.Range(0, borderList.Count - 1)], new Vector3(gridPosX + j, gridPosY + i, 0), Quaternion.identity);
-                        boundClone.transform.parent = transform;
-                        break;
-                    case 4:
-                        SpawnPoint.transform.position = new Vector3(gridPosX + j, gridPosY + i, 0);
-                        GameObject playerTile = (GameObject)Instantiate(floorList[Random.Range(0, floorList.Count - 1)], new Vector3(gridPosX + j, gridPosY + i, 0), Quaternion.identity);
-                        playerTile.transform.parent = transform;
-                        break;
-                }
-            }
-        }
+        tile = 'F'; 
     }
-
-    private void placeFloor(ref int tile)
-    {
-        tile = 0; 
-    }
-    private void placeBounds(ref int tile, int j)
+    private void placeWall(ref char tile, int j)
     {
         if (tabTiles.Count == 0 || tabTiles.Count == roomHeight - 1 || j == 0 || j == roomWidth - 1)
-            tile = 1;
-    }
-    private void placeDoors(ref int tile, int j)
-    {
-        if (tabTiles.Count == roomHeight / 2)
-            if (j == 0 || j == roomWidth - 1)
-                tile = 2;
-        if (j == roomWidth / 2)
-            if (tabTiles.Count == 0 || tabTiles.Count == roomHeight - 1)
-                tile = 2;
+            tile = 'W';
     }
 }

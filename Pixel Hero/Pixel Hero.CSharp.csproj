@@ -72,6 +72,7 @@
     <Compile Include="Assets\Completed\Scripts\Wall.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Map\BaseMap.cs" />
+    <Compile Include="Assets\Scripts\Map\NotARoom.cs" />
     <Compile Include="Assets\Scripts\Map\Room.cs" />
     <Compile Include="Assets\Scripts\Map\StandartRoom.cs" />
     <Compile Include="Assets\Scripts\Map\StartingRoom.cs" />
