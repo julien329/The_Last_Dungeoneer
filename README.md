@@ -1,5 +1,4 @@
-# Pixel-Hero
-**Personnal game project**
+# Pixel-Hero (Personnal game project)
 
 ## Current Status
 In developpement (No build available)
