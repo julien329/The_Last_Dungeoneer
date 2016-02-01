@@ -12,6 +12,7 @@ public class StandartRoom : Room {
         roomHeight = height;
         gridPosX = x;
         gridPosY = y;
+        numberOfNeighbors = 0;
 
         // Generate room tiles
         CreateRoom();

@@ -70,11 +70,17 @@ public abstract class Room {
         get { return gridPosY; }
         set { gridPosY = value; }
     }
+    public int NumberOfNeighbors
+    {
+        get { return numberOfNeighbors; }
+        set { numberOfNeighbors = value; }
+    }
 
     //Protected attributes
     protected int roomWidth;
     protected int roomHeight;
     protected int gridPosX;
     protected int gridPosY;
+    protected int numberOfNeighbors;
     protected List<List<char>> tabTiles= new List<List<char>>();
 }
