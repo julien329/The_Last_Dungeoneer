@@ -50,24 +50,28 @@ public class BaseMap : MonoBehaviour
     void GenerateDungeon(Room[,] tabRooms)
     {
         int roomCounter = 1;
-        int endTimer = 10000;
+        int endTimer = 100000;
         // Loop until either the number of room match or too many iterations are done.
         while (roomCounter < numberOfRoom && endTimer != 0)
         {
             endTimer--;
 
             // Get random position within grid range
-            int i = Random.Range(1, roomGridY - 1);
-            int j = Random.Range(1, roomGridX - 1);
+            int i = Random.Range(0, roomGridY);
+            int j = Random.Range(0, roomGridX);
 
             //Check if the generated position is a room
             if (tabRooms[i, j].GetType() != typeof(NotARoom))
             {
                 // Generate rooms randomly around the generated position
-                GenerateRoom(tabRooms, i, j, (i + 1), j, ref roomCounter);
-                GenerateRoom(tabRooms, i, j, (i - 1), j, ref roomCounter);
-                GenerateRoom(tabRooms, i, j, i, (j + 1), ref roomCounter);
-                GenerateRoom(tabRooms, i, j, i, (j - 1), ref roomCounter);
+                if(i + 1 < roomGridY)
+                    GenerateRoom(tabRooms, i, j, (i + 1), j, ref roomCounter);
+                if(i - 1 >= 0)
+                    GenerateRoom(tabRooms, i, j, (i - 1), j, ref roomCounter);
+                if(j + 1 < roomGridX)
+                    GenerateRoom(tabRooms, i, j, i, (j + 1), ref roomCounter);
+                if(j - 1 >= 0)
+                    GenerateRoom(tabRooms, i, j, i, (j - 1), ref roomCounter);
             }
         }
     }
@@ -76,7 +80,7 @@ public class BaseMap : MonoBehaviour
     void GenerateRoom(Room[,] tabRooms, int i, int j, int new_i, int new_j, ref int roomCounter)
     {
         // If room at given position is not a room, if random groupingFactor match and if there is not enough room yet, create a room at given position.
-        if ((tabRooms[new_i, new_j].GetType() == typeof(NotARoom)) && (Random.Range(0f, 100) <= groupingFactor) && (roomCounter < numberOfRoom))
+        if ((tabRooms[new_i, new_j].GetType() == typeof(NotARoom)) && (Random.Range(0f, 100f) <= groupingFactor) && (roomCounter < numberOfRoom))
         {
             tabRooms[new_i, new_j] = new StandartRoom(roomWidth, roomHeight, new_j * roomWidth, new_i * roomHeight);
             // If creating the room occurs too many neightbours to any room in the grid, delete the room
@@ -94,20 +98,20 @@ public class BaseMap : MonoBehaviour
     // check if any room in the grid has too many neightbours
     bool TooManyNeighbours(Room[,] tabRooms)
     {
-        for (int i = 1; i < roomGridY - 1; i++)
+        for (int i = 0; i < roomGridY; i++)
         {
-            for (int j = 1; j < roomGridX - 1; j++)
+            for (int j = 0; j < roomGridX; j++)
             {
                 int roomCount = 0;
 
                 // For every neightbour top/down/left/right increment roomCount
-                if (tabRooms[i + 1, j].GetType() != typeof(NotARoom))
+                if ((i + 1 < roomGridY) && (tabRooms[i + 1, j].GetType() != typeof(NotARoom)))
                     roomCount++;
-                if (tabRooms[i - 1, j].GetType() != typeof(NotARoom))
+                if ((i - 1 >= 0) && (tabRooms[i - 1, j].GetType() != typeof(NotARoom)))
                     roomCount++;
-                if (tabRooms[i, j + 1].GetType() != typeof(NotARoom))
+                if ((j + 1 < roomGridX) && (tabRooms[i, j + 1].GetType() != typeof(NotARoom)))
                     roomCount++;
-                if (tabRooms[i, j - 1].GetType() != typeof(NotARoom))
+                if ((j - 1 >= 0) && (tabRooms[i, j - 1].GetType() != typeof(NotARoom)))
                     roomCount++;
 
                 // Return true if a room has too many neightbours
