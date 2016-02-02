@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: e5e7ec12db62d5248b7cf62a02347c96
-timeCreated: 1454002599
+timeCreated: 1454362006
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -40,6 +40,26 @@ TextureImporter:
     21300066: Walk_Right_6
     21300068: Walk_Right_7
     21300070: Walk_Right_8
+    21300072: Sword_Down_1
+    21300074: Sword_Down_2
+    21300076: Sword_Down_3
+    21300078: Sword_Down_4
+    21300080: Sword_Down_5
+    21300082: Sword_Right_1
+    21300084: Sword_Right_2
+    21300086: Sword_Right_3
+    21300088: Sword_Right_4
+    21300090: Sword_Right_5
+    21300092: Sword_Left_1
+    21300094: Sword_Left_2
+    21300096: Sword_Left_3
+    21300098: Sword_Left_4
+    21300100: Sword_Left_5
+    21300102: Sword_Up_1
+    21300104: Sword_Up_2
+    21300106: Sword_Up_3
+    21300108: Sword_Up_4
+    21300110: Sword_Up_5
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -232,7 +252,7 @@ TextureImporter:
     - name: Walk_Up_2
       rect:
         serializedVersion: 2
-        x: 146
+        x: 145
         y: 770
         width: 30
         height: 49
@@ -482,6 +502,303 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+    - name: Sword_Down_1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 386
+        width: 26
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Sword_Down_2
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 386
+        width: 27
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Sword_Down_3
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 386
+        width: 28
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Sword_Down_4
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 386
+        width: 40
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 26}
+        - {x: -16, y: 22}
+        - {x: -17, y: 17}
+        - {x: -17, y: -26}
+        - {x: 20, y: -26}
+        - {x: 20, y: 26}
+    - name: Sword_Down_5
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 386
+        width: 46
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 15, y: 26}
+        - {x: -11, y: 26}
+        - {x: -18, y: 14}
+        - {x: -18, y: -23}
+        - {x: -17, y: -26}
+        - {x: 22, y: -26}
+        - {x: 23, y: -25}
+        - {x: 23, y: 15}
+        - {x: 18, y: 24}
+    - name: Sword_Right_1
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 322
+        width: 26
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Sword_Right_2
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 322
+        width: 26
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Sword_Right_3
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 322
+        width: 34
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 25}
+        - {x: -17, y: 23}
+        - {x: -17, y: -18}
+        - {x: -15, y: -25}
+        - {x: 12, y: -25}
+        - {x: 17, y: -20}
+        - {x: 17, y: 20}
+        - {x: 11, y: 25}
+    - name: Sword_Right_4
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 322
+        width: 39
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10.5, y: 25}
+        - {x: -15.5, y: 24}
+        - {x: -15.5, y: 19}
+        - {x: -18.5, y: -1}
+        - {x: -18.5, y: -25}
+        - {x: 9.5, y: -25}
+        - {x: 19.5, y: -5}
+        - {x: 19.5, y: 16}
+        - {x: 10.5, y: 25}
+    - name: Sword_Right_5
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 322
+        width: 33
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12.5, y: 25}
+        - {x: -16.5, y: 24}
+        - {x: -16.5, y: -21}
+        - {x: -15.5, y: -25}
+        - {x: 11.5, y: -25}
+        - {x: 16.5, y: -11}
+        - {x: 16.5, y: 17}
+        - {x: 10.5, y: 25}
+    - name: Sword_Left_1
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 450
+        width: 25
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Sword_Left_2
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 450
+        width: 26
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Sword_Left_3
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 450
+        width: 36
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 25}
+        - {x: -15, y: 18}
+        - {x: -18, y: 11}
+        - {x: -18, y: -17}
+        - {x: -14, y: -25}
+        - {x: 15, y: -25}
+        - {x: 18, y: -18}
+        - {x: 18, y: 0}
+        - {x: 14, y: 25}
+    - name: Sword_Left_4
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 450
+        width: 40
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: 9}
+        - {x: -20, y: -8}
+        - {x: -10, y: -25}
+        - {x: 18, y: -25}
+        - {x: 18, y: 25}
+        - {x: -7, y: 25}
+        - {x: -16, y: 18}
+    - name: Sword_Left_5
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 450
+        width: 34
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 25}
+        - {x: -17, y: 15}
+        - {x: -17, y: -8}
+        - {x: -10, y: -25}
+        - {x: 17, y: -25}
+        - {x: 17, y: 3}
+        - {x: 14, y: 25}
+    - name: Sword_Up_1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 513
+        width: 26
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Sword_Up_2
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 513
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Sword_Up_3
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 513
+        width: 28
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Sword_Up_4
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 513
+        width: 42
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10, y: 24.5}
+        - {x: -11, y: 24.5}
+        - {x: -18, y: 16.5}
+        - {x: -18, y: -24.5}
+        - {x: 16, y: -24.5}
+        - {x: 21, y: -6.5}
+        - {x: 21, y: 14.5}
+    - name: Sword_Up_5
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 513
+        width: 48
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 19, y: 24.5}
+        - {x: -13, y: 24.5}
+        - {x: -18, y: 21.5}
+        - {x: -18, y: -24.5}
+        - {x: 13, y: -24.5}
+        - {x: 24, y: -12.5}
+        - {x: 24, y: 16.5}
     outline: []
   spritePackingTag: 
   userData: 

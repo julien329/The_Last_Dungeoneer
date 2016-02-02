@@ -5,6 +5,12 @@ public class PlayerMovements : MonoBehaviour {
 
     public float speed = 8.0f;
     public Transform SpawnPoint;
+    float attackTimer = 0;
+    public float cooldown = 0.25f;
+    bool attacking = false;
+    public float stamina = 100f;
+    public float staminaCost;
+    public float staminaUpRate;
 
     Vector3 move;
     Rigidbody2D playerRigidbody;
@@ -16,16 +22,45 @@ public class PlayerMovements : MonoBehaviour {
         // Get required components
         anim = GetComponent<Animator>();
         playerRigidbody = GetComponent<Rigidbody2D>();
+
     }
 
-    void FixedUpdate()
+    void Update()
     {
         // Get vertical/horizontal input value with wasd or arrows
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
+        if (Input.GetKey(KeyCode.LeftShift) && stamina > 0)
+        {
+            speed = 12f;
+            stamina -= Time.deltaTime * staminaCost;
+        }
+        else
+        {
+            speed = 6f;
+            if (stamina < 100)
+                stamina += Time.deltaTime * staminaUpRate;
+        }
+
+        Debug.Log(stamina, gameObject);
+ 
+        if (attackTimer > 0)
+            attackTimer -= Time.deltaTime;
+        if (attackTimer <= 0 && attacking)
+            attacking = false;
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            anim.SetBool("Left", false); anim.SetBool("Right", false); ; anim.SetBool("Up", false); ; anim.SetBool("Down", false);
+            attacking = true;
+            attackTimer = cooldown;
+            anim.SetTrigger("Attack");
+        }
+
         // Move the player around the scene.
-        Move(h, v);
+        if(!attacking)
+            Move(h, v);
 
         // Set sprite sorting order according to vertical position
         GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
