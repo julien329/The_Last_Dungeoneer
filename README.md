@@ -1,7 +1,7 @@
 # Pixel-Hero (Personnal game project)
 
 ## Current Status
-In developpement (No build available)
+In developpement (Build Pre-Alpha 1 available in builds section)
 
 ## Description
 * A 2D top down RPG style game, where you go through a random generated dungeon, floor by floor.
@@ -14,6 +14,7 @@ In developpement (No build available)
 * Binding of Isaac
 * Diablo
 * Hammerwatch
+* Dark Souls
 
 ## To-do
 * HUD + minimap
@@ -33,11 +34,20 @@ In developpement (No build available)
 ## Done
 * Dungeon floor structure algorithm
 * Basic sprite decoration
-* Hero walking animations and sprites
+* Hero walking/running animations and sprites
 * Dungeon music (only one)
+* Stamina management system and stamina bar
+* Sword animations.
+
+## Contributors
+* Julien Charbonneau (me)
+*
+* Apply now! :)
 
 ## Contact
 Feel free to contact me for any informations at julien_charbonneau@live.ca
+
+
 
 
 

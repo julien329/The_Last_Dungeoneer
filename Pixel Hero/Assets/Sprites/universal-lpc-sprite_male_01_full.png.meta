@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: e5e7ec12db62d5248b7cf62a02347c96
-timeCreated: 1454362006
+timeCreated: 1454396677
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -113,19 +113,19 @@ TextureImporter:
         y: 771
         width: 30
         height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.4911005, y: 0.32756934}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Left_Idle
       rect:
         serializedVersion: 2
-        x: 20
+        x: 21
         y: 706
         width: 24
         height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.3665049, y: 0.3131067}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Down_Idle
@@ -135,8 +135,8 @@ TextureImporter:
         y: 642
         width: 30
         height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.4911005, y: 0.32543007}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Right_Idle
@@ -146,8 +146,8 @@ TextureImporter:
         y: 578
         width: 24
         height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.60948515, y: 0.3049646}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Left_1
@@ -157,8 +157,8 @@ TextureImporter:
         y: 706
         width: 25
         height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.4145633, y: 0.29294634}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Left_2
@@ -168,8 +168,8 @@ TextureImporter:
         y: 707
         width: 24
         height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.38875452, y: 0.30929255}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Left_3
@@ -179,8 +179,8 @@ TextureImporter:
         y: 707
         width: 25
         height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.3825244, y: 0.30929255}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Left_4
@@ -190,8 +190,8 @@ TextureImporter:
         y: 706
         width: 26
         height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.33569807, y: 0.3131067}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Left_5
@@ -201,8 +201,8 @@ TextureImporter:
         y: 706
         width: 28
         height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.33789936, y: 0.29294634}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Left_6
@@ -212,8 +212,8 @@ TextureImporter:
         y: 706
         width: 26
         height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.34596723, y: 0.30776733}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Left_7
@@ -223,8 +223,8 @@ TextureImporter:
         y: 706
         width: 25
         height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.3825244, y: 0.30776733}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Left_8
@@ -234,8 +234,8 @@ TextureImporter:
         y: 706
         width: 24
         height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.38875327, y: 0.2970874}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Up_1
@@ -245,8 +245,8 @@ TextureImporter:
         y: 771
         width: 30
         height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5088999, y: 0.32756934}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Up_2
@@ -256,8 +256,8 @@ TextureImporter:
         y: 770
         width: 30
         height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5088999, y: 0.33653665}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Up_3
@@ -267,8 +267,8 @@ TextureImporter:
         y: 769
         width: 29
         height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.51841366, y: 0.34743452}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Up_4
@@ -278,8 +278,8 @@ TextureImporter:
         y: 770
         width: 30
         height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.4911011, y: 0.3419862}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Up_5
@@ -289,8 +289,8 @@ TextureImporter:
         y: 771
         width: 30
         height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5088999, y: 0.3220075}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Up_6
@@ -300,8 +300,8 @@ TextureImporter:
         y: 770
         width: 30
         height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5177999, y: 0.33653665}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Up_7
@@ -311,8 +311,8 @@ TextureImporter:
         y: 769
         width: 29
         height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5092079, y: 0.3365379}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Up_8
@@ -322,8 +322,8 @@ TextureImporter:
         y: 770
         width: 30
         height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5088989, y: 0.33653665}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Down_1
@@ -333,8 +333,8 @@ TextureImporter:
         y: 642
         width: 30
         height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5088999, y: 0.3151609}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Down_2
@@ -344,8 +344,8 @@ TextureImporter:
         y: 641
         width: 30
         height: 53
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5088999, y: 0.33376098}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Down_4
@@ -355,8 +355,8 @@ TextureImporter:
         y: 641
         width: 30
         height: 53
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5088999, y: 0.33376098}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Down_3
@@ -366,8 +366,8 @@ TextureImporter:
         y: 641
         width: 29
         height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.49079368, y: 0.3151609}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Down_5
@@ -377,8 +377,8 @@ TextureImporter:
         y: 642
         width: 30
         height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5088999, y: 0.3100269}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Down_6
@@ -388,8 +388,8 @@ TextureImporter:
         y: 641
         width: 30
         height: 53
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.4911011, y: 0.32368556}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Down_7
@@ -399,8 +399,8 @@ TextureImporter:
         y: 641
         width: 29
         height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.51841366, y: 0.3100269}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Down_8
@@ -410,8 +410,8 @@ TextureImporter:
         y: 641
         width: 30
         height: 53
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5088989, y: 0.32368556}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Right_1
@@ -421,8 +421,8 @@ TextureImporter:
         y: 578
         width: 25
         height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5584708, y: 0.29553473}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Right_2
@@ -432,8 +432,8 @@ TextureImporter:
         y: 579
         width: 24
         height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.61124676, y: 0.3038442}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Right_3
@@ -443,8 +443,8 @@ TextureImporter:
         y: 579
         width: 25
         height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.6174762, y: 0.2983959}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Right_4
@@ -454,8 +454,8 @@ TextureImporter:
         y: 578
         width: 26
         height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.62322646, y: 0.30242798}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Right_5
@@ -465,8 +465,8 @@ TextureImporter:
         y: 578
         width: 28
         height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.6525661, y: 0.2983959}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Right_6
@@ -476,8 +476,8 @@ TextureImporter:
         y: 578
         width: 26
         height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.6334956, y: 0.30776733}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Right_7
@@ -487,8 +487,8 @@ TextureImporter:
         y: 578
         width: 25
         height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.61747557, y: 0.3131067}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Walk_Right_8
@@ -498,8 +498,8 @@ TextureImporter:
         y: 578
         width: 24
         height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5889969, y: 0.30776733}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Sword_Down_1
@@ -509,8 +509,8 @@ TextureImporter:
         y: 386
         width: 26
         height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5308069, y: 0.3202949}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Sword_Down_2
@@ -520,8 +520,8 @@ TextureImporter:
         y: 386
         width: 27
         height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.4604464, y: 0.29174745}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Sword_Down_3
@@ -531,8 +531,8 @@ TextureImporter:
         y: 386
         width: 28
         height: 51
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.4904649, y: 0.2958314}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Sword_Down_4
@@ -542,16 +542,16 @@ TextureImporter:
         y: 386
         width: 40
         height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.4933258, y: 0.31002632}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -13, y: 26}
-        - {x: -16, y: 22}
-        - {x: -17, y: 17}
-        - {x: -17, y: -26}
-        - {x: 20, y: -26}
-        - {x: 20, y: 26}
+      - - {x: -12.733032, y: 35.87863}
+        - {x: -15.733032, y: 31.878632}
+        - {x: -16.733032, y: 26.878632}
+        - {x: -16.733032, y: -16.121368}
+        - {x: 20.266968, y: -16.121368}
+        - {x: 20.266968, y: 35.87863}
     - name: Sword_Down_5
       rect:
         serializedVersion: 2
@@ -559,19 +559,19 @@ TextureImporter:
         y: 386
         width: 46
         height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.49419636, y: 0.3202949}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 15, y: 26}
-        - {x: -11, y: 26}
-        - {x: -18, y: 14}
-        - {x: -18, y: -23}
-        - {x: -17, y: -26}
-        - {x: 22, y: -26}
-        - {x: 23, y: -25}
-        - {x: 23, y: 15}
-        - {x: 18, y: 24}
+      - - {x: 15.266968, y: 35.344666}
+        - {x: -10.733032, y: 35.344666}
+        - {x: -17.733032, y: 23.344666}
+        - {x: -17.733032, y: -13.655334}
+        - {x: -16.733032, y: -16.655334}
+        - {x: 22.266968, y: -16.655334}
+        - {x: 23.266968, y: -15.655334}
+        - {x: 23.266968, y: 24.344666}
+        - {x: 18.266968, y: 33.344666}
     - name: Sword_Right_1
       rect:
         serializedVersion: 2
@@ -579,8 +579,8 @@ TextureImporter:
         y: 322
         width: 26
         height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.6129579, y: 0.3038436}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Sword_Right_2
@@ -590,8 +590,8 @@ TextureImporter:
         y: 322
         width: 26
         height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.6334956, y: 0.28106812}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Sword_Right_3
@@ -601,18 +601,18 @@ TextureImporter:
         y: 322
         width: 34
         height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.54711646, y: 0.30776733}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -11, y: 25}
-        - {x: -17, y: 23}
-        - {x: -17, y: -18}
-        - {x: -15, y: -25}
-        - {x: 12, y: -25}
-        - {x: 17, y: -20}
-        - {x: 17, y: 20}
-        - {x: 11, y: 25}
+      - - {x: -12.601959, y: 34.611633}
+        - {x: -18.60196, y: 32.611633}
+        - {x: -18.60196, y: -8.388367}
+        - {x: -16.60196, y: -15.388367}
+        - {x: 10.398041, y: -15.388367}
+        - {x: 15.398041, y: -10.388367}
+        - {x: 15.398041, y: 29.611633}
+        - {x: 9.398041, y: 34.611633}
     - name: Sword_Right_4
       rect:
         serializedVersion: 2
@@ -620,19 +620,19 @@ TextureImporter:
         y: 322
         width: 39
         height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.547922, y: 0.30776733}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -10.5, y: 25}
-        - {x: -15.5, y: 24}
-        - {x: -15.5, y: 19}
-        - {x: -18.5, y: -1}
-        - {x: -18.5, y: -25}
-        - {x: 9.5, y: -25}
-        - {x: 19.5, y: -5}
-        - {x: 19.5, y: 16}
-        - {x: 10.5, y: 25}
+      - - {x: -12.3689575, y: 34.611633}
+        - {x: -17.368958, y: 33.611633}
+        - {x: -17.368958, y: 28.611633}
+        - {x: -20.368958, y: 8.611633}
+        - {x: -20.368958, y: -15.388367}
+        - {x: 7.6310425, y: -15.388367}
+        - {x: 17.631042, y: 4.6116333}
+        - {x: 17.631042, y: 25.611633}
+        - {x: 8.6310425, y: 34.611633}
     - name: Sword_Right_5
       rect:
         serializedVersion: 2
@@ -640,18 +640,18 @@ TextureImporter:
         y: 322
         width: 33
         height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.564725, y: 0.30776733}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -12.5, y: 25}
-        - {x: -16.5, y: 24}
-        - {x: -16.5, y: -21}
-        - {x: -15.5, y: -25}
-        - {x: 11.5, y: -25}
-        - {x: 16.5, y: -11}
-        - {x: 16.5, y: 17}
-        - {x: 10.5, y: 25}
+      - - {x: -14.635925, y: 34.611633}
+        - {x: -18.635925, y: 33.611633}
+        - {x: -18.635925, y: -11.388367}
+        - {x: -17.635925, y: -15.388367}
+        - {x: 9.364075, y: -15.388367}
+        - {x: 14.364075, y: -1.3883667}
+        - {x: 14.364075, y: 26.611633}
+        - {x: 8.364075, y: 34.611633}
     - name: Sword_Left_1
       rect:
         serializedVersion: 2
@@ -659,8 +659,8 @@ TextureImporter:
         y: 450
         width: 25
         height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.4145633, y: 0.30531946}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Sword_Left_2
@@ -670,8 +670,8 @@ TextureImporter:
         y: 450
         width: 26
         height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.36650497, y: 0.29174805}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Sword_Left_3
@@ -681,19 +681,19 @@ TextureImporter:
         y: 450
         width: 36
         height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.41841972, y: 0.3131073}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -7, y: 25}
-        - {x: -15, y: 18}
-        - {x: -18, y: 11}
-        - {x: -18, y: -17}
-        - {x: -14, y: -25}
-        - {x: 15, y: -25}
-        - {x: 18, y: -18}
-        - {x: 18, y: 0}
-        - {x: 14, y: 25}
+      - - {x: -4.0631104, y: 34.344635}
+        - {x: -12.06311, y: 27.344635}
+        - {x: -15.06311, y: 20.344635}
+        - {x: -15.06311, y: -7.655365}
+        - {x: -11.06311, y: -15.655365}
+        - {x: 17.93689, y: -15.655365}
+        - {x: 20.93689, y: -8.655365}
+        - {x: 20.93689, y: 9.344635}
+        - {x: 16.93689, y: 34.344635}
     - name: Sword_Left_4
       rect:
         serializedVersion: 2
@@ -701,17 +701,17 @@ TextureImporter:
         y: 450
         width: 40
         height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.43325272, y: 0.31844667}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -20, y: 9}
-        - {x: -20, y: -8}
-        - {x: -10, y: -25}
-        - {x: 18, y: -25}
-        - {x: 18, y: 25}
-        - {x: -7, y: 25}
-        - {x: -16, y: 18}
+      - - {x: -17.330109, y: 18.077667}
+        - {x: -17.330109, y: 1.0776672}
+        - {x: -7.3301086, y: -15.922333}
+        - {x: 20.669891, y: -15.922333}
+        - {x: 20.669891, y: 34.077667}
+        - {x: -4.3301086, y: 34.077667}
+        - {x: -13.330109, y: 27.077667}
     - name: Sword_Left_5
       rect:
         serializedVersion: 2
@@ -719,17 +719,17 @@ TextureImporter:
         y: 450
         width: 34
         height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.43717867, y: 0.3131073}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -9, y: 25}
-        - {x: -17, y: 15}
-        - {x: -17, y: -8}
-        - {x: -10, y: -25}
-        - {x: 17, y: -25}
-        - {x: 17, y: 3}
-        - {x: 14, y: 25}
+      - - {x: -6.8640747, y: 34.344635}
+        - {x: -14.864075, y: 24.344635}
+        - {x: -14.864075, y: 1.344635}
+        - {x: -7.8640747, y: -15.655365}
+        - {x: 19.135925, y: -15.655365}
+        - {x: 19.135925, y: 12.344635}
+        - {x: 16.135925, y: 34.344635}
     - name: Sword_Up_1
       rect:
         serializedVersion: 2
@@ -737,8 +737,8 @@ TextureImporter:
         y: 513
         width: 26
         height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.51026917, y: 0.338693}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Sword_Up_2
@@ -748,8 +748,8 @@ TextureImporter:
         y: 513
         width: 27
         height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5098888, y: 0.338693}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Sword_Up_3
@@ -759,8 +759,8 @@ TextureImporter:
         y: 513
         width: 28
         height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.50000054, y: 0.3419862}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Sword_Up_4
@@ -770,17 +770,17 @@ TextureImporter:
         y: 513
         width: 42
         height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5063571, y: 0.33653665}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 10, y: 24.5}
-        - {x: -11, y: 24.5}
-        - {x: -18, y: 16.5}
-        - {x: -18, y: -24.5}
-        - {x: 16, y: -24.5}
-        - {x: 21, y: -6.5}
-        - {x: 21, y: 14.5}
+      - - {x: 9.733002, y: 32.509705}
+        - {x: -11.266998, y: 32.509705}
+        - {x: -18.266998, y: 24.509705}
+        - {x: -18.266998, y: -16.490295}
+        - {x: 15.733002, y: -16.490295}
+        - {x: 20.733002, y: 1.5097046}
+        - {x: 20.733002, y: 22.509705}
     - name: Sword_Up_5
       rect:
         serializedVersion: 2
@@ -788,17 +788,17 @@ TextureImporter:
         y: 513
         width: 48
         height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5055625, y: 0.33653665}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 19, y: 24.5}
-        - {x: -13, y: 24.5}
-        - {x: -18, y: 21.5}
-        - {x: -18, y: -24.5}
-        - {x: 13, y: -24.5}
-        - {x: 24, y: -12.5}
-        - {x: 24, y: 16.5}
+      - - {x: 18.733002, y: 32.509705}
+        - {x: -13.266998, y: 32.509705}
+        - {x: -18.266998, y: 29.509705}
+        - {x: -18.266998, y: -16.490295}
+        - {x: 12.733002, y: -16.490295}
+        - {x: 23.733002, y: -4.4902954}
+        - {x: 23.733002, y: 24.509705}
     outline: []
   spritePackingTag: 
   userData: 
