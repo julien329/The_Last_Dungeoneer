@@ -11,8 +11,8 @@ public class BaseMap : MonoBehaviour
     public GameObject SpawnPoint;                                                   // Spawnpoint object
     public GameObject player;                                                       // Player object
 
-    public int roomHeight = 13;
-    public int roomWidth = 19;
+    public static int roomHeight = 13;
+    public static int roomWidth = 21;
     public int roomGridX = 10;
     public int roomGridY = 10;
     public int numberOfRoom = 15;

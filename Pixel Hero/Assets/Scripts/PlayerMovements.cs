@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerMovements : MonoBehaviour {
 
     public Transform SpawnPoint;
+    public List<GameObject> hitColliders = new List<GameObject>();
     public float walkSpeed = 6.0f;
     public float runSpeed = 10f;
     public float attackCooldown = 0.25f;
@@ -12,17 +14,18 @@ public class PlayerMovements : MonoBehaviour {
     public float staminaRegen;
     public float staminaSword;
 
-    Vector3 move;
-    Rigidbody2D playerRigidbody;
-    Animator anim;
+    private Vector3 move;
+    private Rigidbody2D playerRigidbody;
+    private Animator anim;
+    private AnimatorStateInfo currentBaseState;
 
-    float attackTimer = 0;
+    private float attackTimer = 0;
     static public  float staminaTimer = 0;
     static public float stamina = 100f;
-    bool attacking = false;
-    bool running = false;
-    bool moving;
-    float speed;
+    static public bool attacking = false;
+    private bool running = false;
+    private bool moving;
+    private float speed;
 
     // Use this for initialization
     void Start()
@@ -43,9 +46,10 @@ public class PlayerMovements : MonoBehaviour {
 
         // Set sprite sorting order according to vertical position
         GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+        SwordHitCollider();
     }
 
-    void Attack()
+    private void Attack()
     {
         if (attackTimer > 0)
             attackTimer -= Time.deltaTime;
@@ -62,7 +66,7 @@ public class PlayerMovements : MonoBehaviour {
         }
     }
 
-    void Run()
+    private void Run()
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -91,8 +95,13 @@ public class PlayerMovements : MonoBehaviour {
         }
     }
 
-    void Stamina()
+    private void Stamina()
     {
+        if (stamina < 0)
+            stamina = 0;
+        if (stamina > 100)
+            stamina = 100;
+
         if (running || attacking)
             staminaTimer = staminaCooldown;
 
@@ -103,7 +112,7 @@ public class PlayerMovements : MonoBehaviour {
             stamina += Time.deltaTime * staminaRegen;
     }
 
-    void Move()
+    private void Move()
     {
         // Get vertical/horizontal input value with wasd or arrows
         float h = Input.GetAxisRaw("Horizontal");
@@ -135,6 +144,44 @@ public class PlayerMovements : MonoBehaviour {
         // Walk/idle down animation
         bool left = (h < 0);
         anim.SetBool("Left", left);
-
     }
+
+    private void SwordHitCollider()
+    {
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerWalkRight"))
+        {
+            hitColliders[0].SetActive(false);
+            hitColliders[1].SetActive(false);
+            hitColliders[2].SetActive(false);
+            hitColliders[3].SetActive(true);
+        }
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerWalkLeft"))
+        {
+            hitColliders[0].SetActive(false);
+            hitColliders[1].SetActive(false);
+            hitColliders[2].SetActive(true);
+            hitColliders[3].SetActive(false);
+        }
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerWalkUp"))
+        {
+            hitColliders[0].SetActive(true);
+            hitColliders[1].SetActive(false);
+            hitColliders[2].SetActive(false);
+            hitColliders[3].SetActive(false);
+        }
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerWalkDown"))
+        {
+            hitColliders[0].SetActive(false);
+            hitColliders[1].SetActive(true);
+            hitColliders[2].SetActive(false);
+            hitColliders[3].SetActive(false);
+        }
+    }
+    void OnTriggerStay2D(Collider2D other)
+    {
+
+        if (attacking)
+            Destroy(other.gameObject);
+    }
+
 }
