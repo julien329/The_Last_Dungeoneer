@@ -11,8 +11,8 @@ public class BaseMap : MonoBehaviour
     public GameObject SpawnPoint;                                                   // Spawnpoint object
     public GameObject player;                                                       // Player object
 
-    public static int roomHeight = 13;
-    public static int roomWidth = 21;
+    public static int roomHeight = 11;
+    public static int roomWidth = 17;
     public int roomGridX = 10;
     public int roomGridY = 10;
     public int numberOfRoom = 15;
@@ -20,20 +20,22 @@ public class BaseMap : MonoBehaviour
     public int maxNeighbours = 3;
     public int nbIteration = 10000;
 
+    private Room[,] tabRooms;
+
     // Use this for initialization
     void Start()
     {
         // Basic Room array
-        Room[,] tabRooms = new Room[roomGridY, roomGridX];
+        tabRooms = new Room[roomGridY, roomGridX];
 
-        InitialiseRooms(tabRooms);
-        GenerateDungeon(tabRooms);
-        PrintRooms(tabRooms);
+        InitialiseRooms();
+        GenerateDungeon();
+        PrintRooms();
         SpawnPlayer();
     }
 
     // Initialise the grid with starting room
-    void InitialiseRooms(Room[,] tabRooms)
+    void InitialiseRooms()
     {
         for (int i = 0; i < roomGridY; i++)
         {
@@ -48,14 +50,14 @@ public class BaseMap : MonoBehaviour
     }
 
     // Generate rooms randomly in the array
-    void GenerateDungeon(Room[,] tabRooms)
+    void GenerateDungeon()
     {
         int roomCounter = 0;
      
         // Loop until either the number of room match or too many iterations are done.
         while (roomCounter <= numberOfRoom / 4)
         {
-            InitialiseRooms(tabRooms);
+            InitialiseRooms();
             roomCounter = 1;
             int endTimer = nbIteration;
 
@@ -92,7 +94,7 @@ public class BaseMap : MonoBehaviour
         {
             tabRooms[new_i, new_j] = new StandartRoom(roomWidth, roomHeight, new_j * roomWidth, new_i * roomHeight);
             // If creating the room occurs too many neightbours to any room in the grid, delete the room
-            if (TooManyNeighbours(tabRooms))
+            if (TooManyNeighbours())
                 tabRooms[new_i, new_j] = null;
             else
             {
@@ -104,7 +106,7 @@ public class BaseMap : MonoBehaviour
     }
 
     // check if any room in the grid has too many neightbours
-    bool TooManyNeighbours(Room[,] tabRooms)
+    bool TooManyNeighbours()
     {
         int[,] updatedNeighbors = new int[roomGridY, roomGridY];
 
@@ -150,7 +152,7 @@ public class BaseMap : MonoBehaviour
     }
 
     // Get every room to be instanciated on the map
-    void PrintRooms(Room[,] tabRooms)
+    void PrintRooms()
     {
         for (int i = 0; i < roomGridY; i++)
         {
