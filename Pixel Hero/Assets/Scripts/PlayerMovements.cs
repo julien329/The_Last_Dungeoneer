@@ -22,7 +22,7 @@ public class PlayerMovements : MonoBehaviour {
     private float attackTimer = 0;
     static public  float staminaTimer = 0;
     static public float stamina = 100f;
-    static public bool attacking = false;
+    private bool attacking = false;
     private bool running = false;
     private bool moving;
     private float speed;
@@ -41,6 +41,7 @@ public class PlayerMovements : MonoBehaviour {
         Attack();
         Stamina();
 
+        // Stop moving if attacking
         if(!attacking)
             Move();
 
@@ -51,15 +52,20 @@ public class PlayerMovements : MonoBehaviour {
 
     private void Attack()
     {
+        // If attack timer is up, lower it until 0
         if (attackTimer > 0)
             attackTimer -= Time.deltaTime;
+        // If attack timer is null, set to not attacking
         if (attackTimer <= 0 && attacking)
             attacking = false;
 
+        // Poll for attack input if not running and have enough stamina
         if (Input.GetButtonDown("Fire1") && !running && stamina > 0)
         {
+            // Set anim bools to false to ensure the waking animation stops
             anim.SetBool("Left", false); anim.SetBool("Right", false); ; anim.SetBool("Up", false); ; anim.SetBool("Down", false);
             attacking = true;
+            // Put a delay between attacks, set attack animation and apply stamina cost
             attackTimer = attackCooldown;
             anim.SetTrigger("Attack");
             stamina -= staminaSword;
@@ -68,18 +74,23 @@ public class PlayerMovements : MonoBehaviour {
 
     private void Run()
     {
+        // Pool for run input
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            // If have enought stamina
             if (stamina > 0)
             {
+                // If not just pressing the input without moving
                 if (moving)
                 {
+                    // Set running speed, speed up walking animations and slowly remove stamina
                     speed = runSpeed;
                     anim.speed = 2;
                     running = true;
                     stamina -= Time.deltaTime * staminaRun;
                 }
             }
+            // If not enought stamina, walk instead.
             else
             {
                 running = false;
@@ -87,6 +98,7 @@ public class PlayerMovements : MonoBehaviour {
                 speed = walkSpeed;
             }
         }
+        // If not pressing run input, walk.
         else
         {
             running = false;
@@ -97,17 +109,21 @@ public class PlayerMovements : MonoBehaviour {
 
     private void Stamina()
     {
+        // Set stamina min and max
         if (stamina < 0)
             stamina = 0;
         if (stamina > 100)
             stamina = 100;
 
+        // If running or attacking, restart stamina regen cooldown
         if (running || attacking)
             staminaTimer = staminaCooldown;
 
+        // If stamina cooldown is on, count down till null;
         if (staminaTimer > 0)
             staminaTimer -= Time.deltaTime;
 
+        // If stamina is not full and cooldown is null, regen stamina
         if (stamina < 100 && staminaTimer <= 0)
             stamina += Time.deltaTime * staminaRegen;
     }
@@ -118,6 +134,7 @@ public class PlayerMovements : MonoBehaviour {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
+        // If vertical or hozontal value is not null, set moving true
         if (h != 0 || v != 0)
             moving = true;
         else
@@ -146,30 +163,31 @@ public class PlayerMovements : MonoBehaviour {
         anim.SetBool("Left", left);
     }
 
+    // Activate proper sword hit collider according to the current mechanim animation state (Up, down, left, right).
     private void SwordHitCollider()
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerWalkRight"))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerIdleRight"))
         {
             hitColliders[0].SetActive(false);
             hitColliders[1].SetActive(false);
             hitColliders[2].SetActive(false);
             hitColliders[3].SetActive(true);
         }
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerWalkLeft"))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerIdleLeft"))
         {
             hitColliders[0].SetActive(false);
             hitColliders[1].SetActive(false);
             hitColliders[2].SetActive(true);
             hitColliders[3].SetActive(false);
         }
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerWalkUp"))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerIdleUp"))
         {
             hitColliders[0].SetActive(true);
             hitColliders[1].SetActive(false);
             hitColliders[2].SetActive(false);
             hitColliders[3].SetActive(false);
         }
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerWalkDown"))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerIdleDown"))
         {
             hitColliders[0].SetActive(false);
             hitColliders[1].SetActive(true);
@@ -177,9 +195,10 @@ public class PlayerMovements : MonoBehaviour {
             hitColliders[3].SetActive(false);
         }
     }
+
     void OnTriggerStay2D(Collider2D other)
     {
-
+        // Destroy gameObject colliding with sword hitbox
         if (attacking)
             Destroy(other.gameObject);
     }

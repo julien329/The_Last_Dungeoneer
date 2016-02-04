@@ -10,8 +10,10 @@ public class BaseMap : MonoBehaviour
     public GameObject wall;                                                         // Special colored wall prefab
     public GameObject SpawnPoint;                                                   // Spawnpoint object
     public GameObject player;                                                       // Player object
+    public Transform minimap;
+    public Transform mainCam;
 
-    public static int roomHeight = 11;
+    public static int roomHeight = 13;
     public static int roomWidth = 17;
     public int roomGridX = 10;
     public int roomGridY = 10;
@@ -53,7 +55,7 @@ public class BaseMap : MonoBehaviour
     void GenerateDungeon()
     {
         int roomCounter = 0;
-     
+
         // Loop until either the number of room match or too many iterations are done.
         while (roomCounter <= numberOfRoom / 4)
         {
@@ -143,7 +145,7 @@ public class BaseMap : MonoBehaviour
             for (int j = 0; j < roomGridX; j++)
             {
                 if (tabRooms[i, j] != null)
-                    tabRooms[i, j].NumberOfNeighbors = updatedNeighbors[i,j];
+                    tabRooms[i, j].NumberOfNeighbors = updatedNeighbors[i, j];
             }
         }
 
@@ -159,7 +161,7 @@ public class BaseMap : MonoBehaviour
             for (int j = 0; j < roomGridX; j++)
             {
                 // Send the room to be instanciated if the given position is a room
-                if (tabRooms[i,j] != null)
+                if (tabRooms[i, j] != null)
                     InstanciateTiles(tabRooms[i, j]);
             }
         }
@@ -217,9 +219,11 @@ public class BaseMap : MonoBehaviour
         }
     }
 
-    // Change player position to match the spawnpoint's position
+    // Change playerand cameras positions to match the spawnpoint's position
     void SpawnPlayer()
     {
         player.transform.position = SpawnPoint.transform.position;
+        mainCam.transform.position = SpawnPoint.transform.position;
+        minimap.transform.position = SpawnPoint.transform.position;
     }
 }
