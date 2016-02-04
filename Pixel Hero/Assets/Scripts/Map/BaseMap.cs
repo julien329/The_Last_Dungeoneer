@@ -10,22 +10,23 @@ public class BaseMap : MonoBehaviour
     public GameObject wall;                                                         // Special colored wall prefab
     public GameObject SpawnPoint;                                                   // Spawnpoint object
     public GameObject player;                                                       // Player object
-    public Transform minimap;
+    public Transform minimapCam;
     public Transform mainCam;
 
     public static int roomHeight = 13;
     public static int roomWidth = 17;
-    public int roomGridX = 10;
-    public int roomGridY = 10;
+    public static int roomGridX = 10;
+    public static int roomGridY = 10;
     public int numberOfRoom = 15;
     public int groupingFactor = 100;
     public int maxNeighbours = 3;
     public int nbIteration = 10000;
 
-    private Room[,] tabRooms;
+    public static Room[,] tabRooms;
+    
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         // Basic Room array
         tabRooms = new Room[roomGridY, roomGridX];
@@ -224,6 +225,6 @@ public class BaseMap : MonoBehaviour
     {
         player.transform.position = SpawnPoint.transform.position;
         mainCam.transform.position = SpawnPoint.transform.position;
-        minimap.transform.position = SpawnPoint.transform.position;
+        minimapCam.transform.position = SpawnPoint.transform.position;
     }
 }
