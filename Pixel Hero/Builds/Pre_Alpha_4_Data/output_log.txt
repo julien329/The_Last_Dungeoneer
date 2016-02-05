@@ -1,0 +1,57 @@
+Initialize engine version: 5.3.2f1 (e87ab445ead0)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: Intel(R) HD Graphics 4600 (ID=0x416)
+    Vendor:   Intel
+    VRAM:     2138 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\julie\Documents\PixelHero\Pixel Hero\Builds\Pre_Alpha_4_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\julie\Documents\PixelHero\Pixel Hero\Builds\Pre_Alpha_4_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\julie\Documents\PixelHero\Pixel Hero\Builds\Pre_Alpha_4_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\julie\Documents\PixelHero\Pixel Hero\Builds\Pre_Alpha_4_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\julie\Documents\PixelHero\Pixel Hero\Builds\Pre_Alpha_4_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\julie\Documents\PixelHero\Pixel Hero\Builds\Pre_Alpha_4_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\julie\Documents\PixelHero\Pixel Hero\Builds\Pre_Alpha_4_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\julie\Documents\PixelHero\Pixel Hero\Builds\Pre_Alpha_4_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.107 seconds
+Platform assembly: C:\Users\julie\Documents\PixelHero\Pixel Hero\Builds\Pre_Alpha_4_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\julie\Documents\PixelHero\Pixel Hero\Builds\Pre_Alpha_4_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.535849 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 18.306133 ms
+
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 21880.
+Total: 3.280957 ms (FindLiveObjects: 0.768920 ms CreateObjectMapping: 0.206556 ms MarkObjects: 2.291794 ms  DeleteObjects: 0.009836 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 15.832158 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 21880.
+Total: 3.189011 ms (FindLiveObjects: 0.771486 ms CreateObjectMapping: 0.130006 ms MarkObjects: 2.275971 ms  DeleteObjects: 0.010691 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 16.076349 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 21880.
+Total: 3.490507 ms (FindLiveObjects: 0.923303 ms CreateObjectMapping: 0.149678 ms MarkObjects: 2.392293 ms  DeleteObjects: 0.024803 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 15.915550 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 21880.
+Total: 3.519587 ms (FindLiveObjects: 0.801422 ms CreateObjectMapping: 0.127868 ms MarkObjects: 2.574473 ms  DeleteObjects: 0.014967 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 15.759028 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 21880.
+Total: 3.569623 ms (FindLiveObjects: 0.977615 ms CreateObjectMapping: 0.127868 ms MarkObjects: 2.453875 ms  DeleteObjects: 0.010263 ms)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 2a08 -> priority: 1 
+  Thread -> id: 1db0 -> priority: 1 

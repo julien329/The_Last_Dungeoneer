@@ -62,10 +62,8 @@ public class PlayerMovements : MonoBehaviour {
         // Poll for attack input if not running and have enough stamina
         if (Input.GetButtonDown("Fire1") && !running && stamina > 0)
         {
-            // Set anim bools to false to ensure the waking animation stops
-            anim.SetBool("Left", false); anim.SetBool("Right", false); ; anim.SetBool("Up", false); ; anim.SetBool("Down", false);
-            attacking = true;
             // Put a delay between attacks, set attack animation and apply stamina cost
+            attacking = true;
             attackTimer = attackCooldown;
             anim.SetTrigger("Attack");
             stamina -= staminaSword;

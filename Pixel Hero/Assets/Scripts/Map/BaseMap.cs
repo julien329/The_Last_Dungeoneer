@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class BaseMap : MonoBehaviour
 {
@@ -22,32 +23,39 @@ public class BaseMap : MonoBehaviour
     public int maxNeighbours = 3;
     public int nbIteration = 10000;
 
+    private float restartTimer = 0;
+
     public static Room[,] tabRooms;
     
 
-    // Use this for initialization
+    // Use this for initialization (called before all Start())
     void Awake()
     {
-        // Basic Room array
-        tabRooms = new Room[roomGridY, roomGridX];
-
         InitialiseRooms();
         GenerateDungeon();
         PrintRooms();
         SpawnPlayer();
     }
 
+    // Update is called once by frame
+    void Update()
+    {
+        // If R is kept pressed, count up with timer
+        if (Input.GetKey(KeyCode.R))
+            restartTimer += Time.deltaTime;
+        // If R is released, restart timer at 0
+        if (Input.GetKeyUp(KeyCode.R))
+            restartTimer = 0;
+        // If timer is greater or equal to 2, restart level
+        if (restartTimer >= 1)
+            SceneManager.LoadScene(0);
+    }
+
     // Initialise the grid with starting room
     void InitialiseRooms()
     {
-        for (int i = 0; i < roomGridY; i++)
-        {
-            for (int j = 0; j < roomGridX; j++)
-            {
-                tabRooms[i, j] = null;
-            }
-        }
-
+        // Basic Room array
+        tabRooms = new Room[roomGridY, roomGridX];
         //Generate the starting room containing the player's spawnpoint at the middle of the map.
         tabRooms[(roomGridY / 2), (roomGridX / 2)] = new StartingRoom(roomWidth, roomHeight, (roomGridX / 2) * roomWidth, (roomGridY / 2) * roomHeight);
     }
