@@ -6,13 +6,18 @@ using System.Collections.Generic;
 public class StandartRoom : Room {
 
     // Constructor
-    public StandartRoom(int width, int height, int x, int y)     
+    public StandartRoom(int width, int height, int x, int y)
     {
         roomWidth = width;
         roomHeight = height;
         gridPosX = x;
         gridPosY = y;
         numberOfNeighbors = 0;
+
+        for (int i = 0; i < 4; i++)
+        { 
+            tabDoors[i] = false;
+        }
 
         // Generate room tiles
         CreateRoom();

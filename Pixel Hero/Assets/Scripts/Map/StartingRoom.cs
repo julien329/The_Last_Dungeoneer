@@ -14,6 +14,11 @@ public class StartingRoom : Room {
         gridPosY = y;
         numberOfNeighbors = 0;
 
+        for (int i = 0; i < 4; i++)
+        {
+            tabDoors[i] = false;
+        }
+
         // Generate room tiles
         CreateRoom();
     }

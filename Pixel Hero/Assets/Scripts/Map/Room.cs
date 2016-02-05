@@ -10,30 +10,37 @@ public abstract class Room {
     // Connect a room with current room (this) with a door in the middle of width or height
     public void ConnectRoom(ref Room room)
     {
-        // If current room is above the other room
+        // If current room is after the other room
         if (gridPosX > room.GridPosX)
         {
             tabTiles[roomHeight / 2][0] = 'D';
             room.setTile((room.RoomHeight / 2), (room.RoomWidth - 1), 'D');
-
+            this.setDoor(2);
+            room.setDoor(3);
         }
-        // If current room is under the other room
+        // If current room is before the other room
         if (gridPosX < room.GridPosX)
         {
             tabTiles[roomHeight / 2][room.RoomWidth - 1] = 'D';
             room.setTile((room.RoomHeight / 2), 0, 'D');
+            this.setDoor(3);
+            room.setDoor(2);
         }
-        // If current room is after the other room
+        // If current room is over the other room
         if (gridPosY > room.GridPosY)
         {
             tabTiles[0][roomWidth / 2] = 'D';
             room.setTile((RoomHeight - 1), (room.RoomWidth / 2), 'D');
+            this.setDoor(1);
+            room.setDoor(0);
         }
-        // If current room is before the other room
+        // If current room is under the other room
         if (gridPosY < room.GridPosY)
         {
             tabTiles[RoomHeight - 1][roomWidth / 2] = 'D';
             room.setTile(0, (room.RoomWidth / 2), 'D');
+            this.setDoor(0);
+            room.setDoor(1);
         }
 
     }
@@ -47,6 +54,16 @@ public abstract class Room {
     public void setTile(int i, int j, char tile)
     {
         tabTiles[i][j] = tile;
+    }
+    // Get doors position (0=up, 1=down, 2=left, 3=right)
+    public bool getDoor(int pos)
+    {
+        return tabDoors[pos];
+    }
+    //SGet doors position(0=up, 1=down, 2=left, 3=right)
+    public void setDoor(int pos)
+    {
+        tabDoors[pos] = true;
     }
 
     // Accessors-modificators
@@ -82,5 +99,6 @@ public abstract class Room {
     protected int gridPosX;
     protected int gridPosY;
     protected int numberOfNeighbors;
-    protected List<List<char>> tabTiles= new List<List<char>>();
+    protected bool[] tabDoors= new bool[4];
+    protected List<List<char>> tabTiles = new List<List<char>>();
 }

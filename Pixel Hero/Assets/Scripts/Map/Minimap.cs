@@ -4,6 +4,7 @@ using System.Collections;
 public class Minimap : MonoBehaviour {
 
     public GameObject panel;
+    public GameObject door;
     public Transform player;
 
     private string[,] minimap;
@@ -12,31 +13,26 @@ public class Minimap : MonoBehaviour {
     private int playerPositionX;
     private int playerPositionY;
 
-    // Use this for initialization
     void Start ()
     {
         InstanciatePanels();
         InitialiseMinimap();
-
-	
 	}
 	
-	// Update is called once per frame
 	void Update ()
     {
         playerPositionX = (int)(player.position.x / BaseMap.roomWidth);
         playerPositionY = (int)(player.position.y / BaseMap.roomHeight);
 
-        if (minimap[playerPositionY, playerPositionX] == "semiVisible")
+        if (minimap[playerPositionY, playerPositionX] != "fullVisible")
             needUpdate = true;
 
         if (needUpdate)
         {
             revealNeighbors(playerPositionY, playerPositionX);
+            revealDoors(playerPositionY, playerPositionX);
             needUpdate = false;
         }
-            
-
 	}
 
     void InitialiseMinimap()
@@ -57,32 +53,48 @@ public class Minimap : MonoBehaviour {
         minimap[(BaseMap.roomGridY / 2), (BaseMap.roomGridX / 2)] = "fullVisible";
     }
 
-   void revealNeighbors(int i, int j)
+    void revealNeighbors(int i, int j)
     {
-        tabPanels[i, j].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+        Room room = BaseMap.tabRooms[i, j];
+        if(tabPanels[i, j] != null)
+            tabPanels[i, j].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+        minimap[i, j] = "fullVisible";
 
-        if ((i + 1 < BaseMap.roomGridX) && BaseMap.tabRooms[i + 1, j] != null && minimap[i + 1, j] == "notVisible")
+        if (BaseMap.tabRooms[i, j] != null)
         {
-            minimap[i + 1, j] = "semiVisible";
-            tabPanels[i + 1, j].GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f);
+            if ((i + 1 < BaseMap.roomGridX) && (BaseMap.tabRooms[i, j].getDoor(0)) && (BaseMap.tabRooms[i + 1, j] != null) && (minimap[i + 1, j] == "notVisible"))
+            {
+                minimap[i + 1, j] = "semiVisible";
+                tabPanels[i + 1, j].GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f);
+            }
+
+            if ((i - 1 >= 0) && (BaseMap.tabRooms[i, j].getDoor(1)) && (BaseMap.tabRooms[i - 1, j] != null) && (minimap[i - 1, j] == "notVisible"))
+            {
+                minimap[i - 1, j] = "semiVisible";
+                tabPanels[i - 1, j].GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f);
+            }
+
+            if ((j + 1 < BaseMap.roomGridY) && (BaseMap.tabRooms[i, j].getDoor(3)) && (BaseMap.tabRooms[i, j + 1] != null) && (minimap[i, j + 1] == "notVisible"))
+            {
+                minimap[i, j + 1] = "semiVisible";
+                tabPanels[i, j + 1].GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f);
+            }
+
+            if ((j - 1 >= 0) && (BaseMap.tabRooms[i, j].getDoor(2)) && (BaseMap.tabRooms[i, j - 1] != null) && (minimap[i, j - 1] == "notVisible"))
+            {
+                minimap[i, j - 1] = "semiVisible";
+                tabPanels[i, j - 1].GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f);
+            }
         }
+    }
 
-        if ((i - 1 >= 0) && BaseMap.tabRooms[i - 1, j] != null && minimap[i - 1, j] == "notVisible")
+    void revealDoors(int i, int j)
+    {
+        if (BaseMap.tabRooms[i, j].getDoor(0))
         {
-            minimap[i - 1, j] = "semiVisible";
-            tabPanels[i - 1, j].GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f);
-        }
-
-        if ((j + 1 < BaseMap.roomGridY) && BaseMap.tabRooms[i, j + 1] != null && minimap[i, j + 1] == "notVisible")
-        {
-            minimap[i, j + 1] = "semiVisible";
-            tabPanels[i, j + 1].GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f);
-        }
-
-        if ((j - 1 >= 0) && BaseMap.tabRooms[i, j - 1] != null && minimap[i, j - 1] == "notVisible")
-        {
-            minimap[i, j - 1] = "semiVisible";
-            tabPanels[i, j - 1].GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f);
+            GameObject doorClone = (GameObject)Instantiate(door, new Vector3((j * BaseMap.roomWidth) + (BaseMap.roomWidth / 2), ((i + 1) * BaseMap.roomHeight) - 0.5f, 0), Quaternion.identity);
+            doorClone.transform.localScale = new Vector3(4, 2);
+            doorClone.transform.parent = transform;
         }
     }
 
@@ -103,7 +115,6 @@ public class Minimap : MonoBehaviour {
                 }
             }
         }
-
         tabPanels[(BaseMap.roomGridY / 2), (BaseMap.roomGridX / 2)].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
     }
 }
