@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class BaseMap : MonoBehaviour
 {
     public List<GameObject> floorList = new List<GameObject>();                     // List of different floor prefabs
-    public List<GameObject> borderList = new List<GameObject>();                    // List of different wall prefabs
     public GameObject door;                                                         // Special colored door floor prefab
     public GameObject wall;                                                         // Special colored wall prefab
     public GameObject SpawnPoint;                                                   // Spawnpoint object
@@ -131,13 +130,13 @@ public class BaseMap : MonoBehaviour
                     int roomCount = 0;
 
                     // For every neightbour top/down/left/right increment roomCount
-                    if ((i + 1 < roomGridY) && (tabRooms[i + 1, j] != null))
+                    if (!OutOfBounds(i + 1, j) && (tabRooms[i + 1, j] != null))
                         roomCount++;
-                    if ((i - 1 >= 0) && (tabRooms[i - 1, j] != null))
+                    if (!OutOfBounds(i - 1, j) && (tabRooms[i - 1, j] != null))
                         roomCount++;
-                    if ((j + 1 < roomGridX) && (tabRooms[i, j + 1] != null))
+                    if (!OutOfBounds(i, j + 1) && (tabRooms[i, j + 1] != null))
                         roomCount++;
-                    if ((j - 1 >= 0) && (tabRooms[i, j - 1] != null))
+                    if (!OutOfBounds(i, j - 1) && (tabRooms[i, j - 1] != null))
                         roomCount++;
 
                     updatedNeighbors[i, j] = roomCount;
@@ -171,14 +170,32 @@ public class BaseMap : MonoBehaviour
             {
                 // Send the room to be instanciated if the given position is a room
                 if (tabRooms[i, j] != null)
-                    InstanciateTiles(tabRooms[i, j]);
+                {
+                    GameObject roomClone = new GameObject(tabRooms[i, j].GetType().ToString() + "[" + i + "," + j + "]");
+                    roomClone.transform.parent = transform;
+                    roomClone.transform.position = new Vector3(roomWidth * j, roomHeight * i, 0);
+                    InstanciateTiles(tabRooms[i, j], roomClone);
+                }
             }
         }
     }
 
     // Instanciate every tile as a clone of the original prefab
-    void InstanciateTiles(Room room)
+    void InstanciateTiles(Room room, GameObject roomClone)
     {
+        // Create empty gameObjects as parent for each type of tiles
+        GameObject floors = new GameObject("Floors");
+        floors.transform.parent = roomClone.transform;
+        floors.transform.position = new Vector3(room.GridPosX, room.GridPosY, 0);
+
+        GameObject doors = new GameObject("Doors");
+        doors.transform.parent = roomClone.transform;
+        doors.transform.position = new Vector3(room.GridPosX, room.GridPosY, 0);
+
+        GameObject walls = new GameObject("Walls");
+        walls.transform.position = new Vector3(room.GridPosX, room.GridPosY, 0);
+        walls.transform.parent = roomClone.transform;
+
         for (int i = 0; i < roomHeight; i++)
         {
             for (int j = 0; j < roomWidth; j++)
@@ -189,30 +206,27 @@ public class BaseMap : MonoBehaviour
                     // Spawn a door tile
                     case 'D':
                         // Create a clone from the original prefab.
-                        GameObject doorClone = (GameObject)Instantiate(door, new Vector3(room.GridPosX + j, room.GridPosY + i, 0), Quaternion.identity);
+                        GameObject doorClone = (GameObject)Instantiate(door);
+                        doorClone.transform.position = new Vector3(room.GridPosX + j, room.GridPosY + i, 0);
+                        doorClone.name = "Door[" + i + "," + j + "]";
                         // Mark the clone as a child of the current GameObject
-                        doorClone.transform.parent = transform;
+                        doorClone.transform.parent = doors.transform;
                         break;
                     // Spawn a floor
                     case 'F':
                         // Create a clone from a random prefab from the list.
                         GameObject floorClone = (GameObject)Instantiate(floorList[Random.Range(0, floorList.Count - 1)], new Vector3(room.GridPosX + j, room.GridPosY + i, 0), Quaternion.identity);
+                        floorClone.name = "Floor[" + i + "," + j + "]";
                         // Mark the clone as a child of the current GameObject
-                        floorClone.transform.parent = transform;
-                        break;
-                    // Spawn a null tile (out of bound)
-                    case 'N':
-                        // Create a clone from a random prefab from the list.
-                        GameObject nullClone = (GameObject)Instantiate(borderList[Random.Range(0, borderList.Count - 1)], new Vector3(room.GridPosX + j, room.GridPosY + i, 0), Quaternion.identity);
-                        // Mark the clone as a child of the current GameObject
-                        nullClone.transform.parent = transform;
+                        floorClone.transform.parent = floors.transform;
                         break;
                     // Spawn a wall tile
                     case 'W':
                         // Create a clone from the original prefab.
                         GameObject wallClone = (GameObject)Instantiate(wall, new Vector3(room.GridPosX + j, room.GridPosY + i, 0), Quaternion.identity);
+                        wallClone.name = "Wall[" + i + "," + j + "]";
                         // Mark the clone as a child of the current GameObject
-                        wallClone.transform.parent = transform;
+                        wallClone.transform.parent = walls.transform;
                         break;
                     // Spawn a hero (spawnpoint) and a floor tile under it
                     case 'H':
@@ -220,8 +234,9 @@ public class BaseMap : MonoBehaviour
                         SpawnPoint.transform.position = new Vector3(room.GridPosX + j, room.GridPosY + i, 0);
                         // Create a clone from a random prefab from the list.
                         GameObject playerTile = (GameObject)Instantiate(floorList[Random.Range(0, floorList.Count - 1)], new Vector3(room.GridPosX + j, room.GridPosY + i, 0), Quaternion.identity);
+                        playerTile.name = "SpawnLocation";
                         // Mark the clone as a child of the current GameObject
-                        playerTile.transform.parent = transform;
+                        playerTile.transform.parent = roomClone.transform;
                         break;
                 }
             }
@@ -234,5 +249,13 @@ public class BaseMap : MonoBehaviour
         player.transform.position = SpawnPoint.transform.position;
         mainCam.transform.position = SpawnPoint.transform.position;
         minimapCam.transform.position = SpawnPoint.transform.position;
+    }
+
+    // Check if the given position is out of bounds in the map.
+    bool OutOfBounds(int i, int j)
+    {
+        if (i < 0 || i >= roomGridY || j < 0 || j >= roomGridX)
+            return true;
+        return false;
     }
 }

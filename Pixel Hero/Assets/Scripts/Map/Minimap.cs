@@ -11,9 +11,17 @@ public class Minimap : MonoBehaviour {
     private GameObject[,] tabPanels;
     private int playerPositionX;
     private int playerPositionY;
+    private int roomGridX;
+    private int roomGridY;
+    private int roomHeight;
+    private int roomWidth;
+
 
     void Start ()
     {
+        roomGridX = BaseMap.roomGridX; roomGridY = BaseMap.roomGridY;
+        roomWidth = BaseMap.roomWidth; roomHeight = BaseMap.roomHeight;
+
         InstanciatePanels();
         InitialiseMinimap();
     }
@@ -21,11 +29,11 @@ public class Minimap : MonoBehaviour {
 	void Update ()
     {
         // Get player position in the room grid.
-        playerPositionX = (int)(player.position.x / BaseMap.roomWidth);
-        playerPositionY = (int)(player.position.y / BaseMap.roomHeight);
+        playerPositionX = (int)(player.position.x / roomWidth);
+        playerPositionY = (int)(player.position.y / roomHeight);
 
-        // If player position is a not visited room, and he is not int a inexisting room, update the minimap
-        if (minimap[playerPositionY, playerPositionX] != "fullVisible" && BaseMap.tabRooms[playerPositionY, playerPositionX] != null)
+        // If player position is a not visited room, and he is not in a inexisting room, update the minimap
+        if (!OutOfBounds(playerPositionY, playerPositionX) && minimap[playerPositionY, playerPositionX] != "fullVisible" && BaseMap.tabRooms[playerPositionY, playerPositionX] != null)
         {
             revealNeighbors(playerPositionY, playerPositionX);
             revealDoors(playerPositionY, playerPositionX);
@@ -36,12 +44,12 @@ public class Minimap : MonoBehaviour {
     void InitialiseMinimap()
     {
         // Declare array same size a tabRoom array.
-        minimap = new string[BaseMap.roomGridY, BaseMap.roomGridX];
+        minimap = new string[roomGridY, roomGridX];
 
         // Scan map for existing rooms
-        for (int i = 0; i < BaseMap.roomGridY; i++)
+        for (int i = 0; i < roomGridY; i++)
         {
-            for(int j = 0; j < BaseMap.roomGridX; j++)
+            for(int j = 0; j < roomGridX; j++)
             {
                 if(BaseMap.tabRooms[i,j] != null)
                     minimap[i, j] = "notVisible";
@@ -50,8 +58,8 @@ public class Minimap : MonoBehaviour {
             }
         }
         //Reveal neightbors and door of the starting room in the middle of the map
-        revealNeighbors((BaseMap.roomGridY / 2), (BaseMap.roomGridX / 2));
-        revealDoors((BaseMap.roomGridY / 2), (BaseMap.roomGridX / 2));
+        revealNeighbors((roomGridY / 2), (roomGridX / 2));
+        revealDoors((roomGridY / 2), (roomGridX / 2));
     }
 
     // Reveal neighbors of a room in grey color on the minimap
@@ -62,25 +70,25 @@ public class Minimap : MonoBehaviour {
         minimap[i, j] = "fullVisible";
 
         //Check for room above if there is a door connecting with it. If so, set to semiVisible and grey color.
-        if ((i + 1 < BaseMap.roomGridX) && (BaseMap.tabRooms[i, j].getDoor(0)) && (BaseMap.tabRooms[i + 1, j] != null) && (minimap[i + 1, j] == "notVisible"))
+        if (!OutOfBounds(i + 1, j) && (BaseMap.tabRooms[i, j].getDoor(0)) && (BaseMap.tabRooms[i + 1, j] != null) && (minimap[i + 1, j] == "notVisible"))
         {
             minimap[i + 1, j] = "semiVisible";
             tabPanels[i + 1, j].GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f);
         }
         //Check for room under if there is a door connecting with it. If so, set to semiVisible and grey color.
-        if ((i - 1 >= 0) && (BaseMap.tabRooms[i, j].getDoor(1)) && (BaseMap.tabRooms[i - 1, j] != null) && (minimap[i - 1, j] == "notVisible"))
+        if (!OutOfBounds(i - 1, j) && (BaseMap.tabRooms[i, j].getDoor(1)) && (BaseMap.tabRooms[i - 1, j] != null) && (minimap[i - 1, j] == "notVisible"))
         {
             minimap[i - 1, j] = "semiVisible";
             tabPanels[i - 1, j].GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f);
         }
         //Check for room to the right if there is a door connecting with it. If so, set to semiVisible and grey color.
-        if ((j + 1 < BaseMap.roomGridY) && (BaseMap.tabRooms[i, j].getDoor(3)) && (BaseMap.tabRooms[i, j + 1] != null) && (minimap[i, j + 1] == "notVisible"))
+        if (!OutOfBounds(i, j + 1) && (BaseMap.tabRooms[i, j].getDoor(3)) && (BaseMap.tabRooms[i, j + 1] != null) && (minimap[i, j + 1] == "notVisible"))
         {
             minimap[i, j + 1] = "semiVisible";
             tabPanels[i, j + 1].GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f);
         }
         //Check for room to the left if there is a door connecting with it. If so, set to semiVisible and grey color.
-        if ((j - 1 >= 0) && (BaseMap.tabRooms[i, j].getDoor(2)) && (BaseMap.tabRooms[i, j - 1] != null) && (minimap[i, j - 1] == "notVisible"))
+        if (!OutOfBounds(i, j - 1) && (BaseMap.tabRooms[i, j].getDoor(2)) && (BaseMap.tabRooms[i, j - 1] != null) && (minimap[i, j - 1] == "notVisible"))
         {
             minimap[i, j - 1] = "semiVisible";
             tabPanels[i, j - 1].GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f);
@@ -93,30 +101,34 @@ public class Minimap : MonoBehaviour {
         // Check for door up. If so, instanciate the door on the minimap and set it as child of this object.
         if (BaseMap.tabRooms[i, j].getDoor(0))
         {
-            GameObject doorClone = (GameObject)Instantiate(door, new Vector3((j * BaseMap.roomWidth) + (BaseMap.roomWidth / 2), ((i + 1) * BaseMap.roomHeight) - 0.5f, 0), Quaternion.identity);
+            GameObject doorClone = (GameObject)Instantiate(door, new Vector3((j * roomWidth) + (roomWidth / 2), ((i + 1) * roomHeight) - 0.5f, 0), Quaternion.identity);
+            doorClone.name = "NorthDoor";
             doorClone.transform.localScale = new Vector3(4, 2);
-            doorClone.transform.parent = transform;
+            doorClone.transform.parent = tabPanels[i, j].transform;
         }
         // Check for door down. If so, instanciate the door on the minimap and set it as child of this object.
         if (BaseMap.tabRooms[i, j].getDoor(1))
         {
-            GameObject doorClone = (GameObject)Instantiate(door, new Vector3((j * BaseMap.roomWidth) + (BaseMap.roomWidth / 2), (i * BaseMap.roomHeight) - 0.5f, 0), Quaternion.identity);
+            GameObject doorClone = (GameObject)Instantiate(door, new Vector3((j * roomWidth) + (roomWidth / 2), (i * roomHeight) - 0.5f, 0), Quaternion.identity);
+            doorClone.name = "SouthDoor";
             doorClone.transform.localScale = new Vector3(4, 2);
-            doorClone.transform.parent = transform;
+            doorClone.transform.parent = tabPanels[i, j].transform;
         }
         // Check for door left. If so, instanciate the door on the minimap and set it as child of this object.
         if (BaseMap.tabRooms[i, j].getDoor(2))
         {
-            GameObject doorClone = (GameObject)Instantiate(door, new Vector3((j * BaseMap.roomWidth) - 0.5f , (i * BaseMap.roomHeight) + (BaseMap.roomHeight / 2), 0), Quaternion.identity);
+            GameObject doorClone = (GameObject)Instantiate(door, new Vector3((j * roomWidth) - 0.5f , (i * roomHeight) + (roomHeight / 2), 0), Quaternion.identity);
+            doorClone.name = "WestDoor";
             doorClone.transform.localScale = new Vector3(2, 4);
-            doorClone.transform.parent = transform;
+            doorClone.transform.parent = tabPanels[i, j].transform;
         }
         // Check for door right. If so, instanciate the door on the minimap and set it as child of this object.
         if (BaseMap.tabRooms[i, j].getDoor(3))
         {
-            GameObject doorClone = (GameObject)Instantiate(door, new Vector3(((j + 1) * BaseMap.roomWidth) - 0.5f, (i * BaseMap.roomHeight) + (BaseMap.roomHeight / 2), 0), Quaternion.identity);
+            GameObject doorClone = (GameObject)Instantiate(door, new Vector3(((j + 1) * roomWidth) - 0.5f, (i * roomHeight) + (roomHeight / 2), 0), Quaternion.identity);
+            doorClone.name = "EastDoor";
             doorClone.transform.localScale = new Vector3(2, 4);
-            doorClone.transform.parent = transform;
+            doorClone.transform.parent = tabPanels[i, j].transform;
         }
     }
 
@@ -124,22 +136,30 @@ public class Minimap : MonoBehaviour {
     void InstanciatePanels()
     {
         // Declare array of panel corresponding to the layout of the real map
-        tabPanels = new GameObject[BaseMap.roomGridY, BaseMap.roomGridX];
+        tabPanels = new GameObject[roomGridY, roomGridX];
 
         // Scan the real map for existing rooms
-        for (int i = 0; i < BaseMap.roomGridY; i++)
+        for (int i = 0; i < roomGridY; i++)
         {
-            for (int j = 0; j < BaseMap.roomGridX; j++)
+            for (int j = 0; j < roomGridX; j++)
             {
                 // If a room is found, instanciate the panel at correct position, set it as children of this object and store it in the array for future use.
                 if (BaseMap.tabRooms[i, j] != null)
                 {
-                    GameObject panelClone = (GameObject)Instantiate(panel, new Vector3((j * BaseMap.roomWidth) + (BaseMap.roomWidth / 2), (i * BaseMap.roomHeight) + (BaseMap.roomHeight / 2), 0), Quaternion.identity);
-                    panelClone.transform.localScale = new Vector3(BaseMap.roomWidth - 1, BaseMap.roomHeight - 1, 1);
+                    GameObject panelClone = (GameObject)Instantiate(panel, new Vector3((j * roomWidth) + (roomWidth / 2), (i * roomHeight) + (roomHeight / 2), 0), Quaternion.identity);
+                    panelClone.name = "MinimapPanel[" + i + "," + j + "]";
+                    panelClone.transform.localScale = new Vector3(roomWidth - 1, roomHeight - 1, 1);
                     panelClone.transform.parent = transform;
                     tabPanels[i, j] = panelClone;
                 }
             }
         }
+    }
+
+    bool OutOfBounds(int i, int j)
+    {
+        if (i < 0 || i >= roomGridY || j < 0 || j >= roomGridX)
+            return true;
+        return false;
     }
 }
