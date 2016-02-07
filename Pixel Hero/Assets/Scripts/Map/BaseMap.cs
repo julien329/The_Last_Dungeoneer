@@ -10,6 +10,7 @@ public class BaseMap : MonoBehaviour
     public GameObject wall;                                                         // Special colored wall prefab
     public GameObject SpawnPoint;                                                   // Spawnpoint object
     public GameObject player;                                                       // Player object
+    public GameObject item;
     public Transform minimapCam;
     public Transform mainCam;
 
@@ -32,6 +33,7 @@ public class BaseMap : MonoBehaviour
     {
         InitialiseRooms();
         GenerateDungeon();
+        AddItemRoom();
         PrintRooms();
         SpawnPlayer();
     }
@@ -109,10 +111,36 @@ public class BaseMap : MonoBehaviour
             else
             {
                 // Generate a door between the room and the new room
-                tabRooms[i, j].ConnectRoom(ref tabRooms[new_i, new_j]);
+                tabRooms[i, j].ConnectRoom(tabRooms[new_i, new_j]);
                 roomCounter++;
             }
         }
+    }
+
+    // Add an item room to the map, replacing a standart room
+    void AddItemRoom()
+    {
+        int i, j;
+        // Generate random positions until it finds a standart room
+        do {
+            i = Random.Range(0, roomGridY - 1);
+            j = Random.Range(0, roomGridX - 1);
+        } while (tabRooms[i, j] == null || tabRooms[i, j].GetType() != typeof(StandartRoom));
+        // Replace the room with an item room
+        tabRooms[i,j] = new ItemRoom(roomWidth, roomHeight, j * roomWidth, i * roomHeight);
+
+        // Check for doors in neightbors room for possible connections.
+        if (tabRooms[i + 1, j] != null && tabRooms[i + 1, j].getDoor(1))
+            tabRooms[i, j].ConnectRoom(tabRooms[i + 1, j]);
+
+        if (tabRooms[i - 1, j] != null && tabRooms[i - 1, j].getDoor(0))
+            tabRooms[i, j].ConnectRoom(tabRooms[i - 1, j]);
+
+        if (tabRooms[i, j + 1] != null && tabRooms[i, j + 1].getDoor(2))
+            tabRooms[i, j].ConnectRoom(tabRooms[i, j + 1]);
+
+        if (tabRooms[i, j - 1] != null && tabRooms[i, j - 1].getDoor(3))
+            tabRooms[i, j].ConnectRoom(tabRooms[i, j - 1]);
     }
 
     // check if any room in the grid has too many neightbours
@@ -156,7 +184,6 @@ public class BaseMap : MonoBehaviour
                     tabRooms[i, j].NumberOfNeighbors = updatedNeighbors[i, j];
             }
         }
-
         // Return false if all room have a number of neightbours less or equal to max value
         return false;
     }
@@ -234,9 +261,22 @@ public class BaseMap : MonoBehaviour
                         SpawnPoint.transform.position = new Vector3(room.GridPosX + j, room.GridPosY + i, 0);
                         // Create a clone from a random prefab from the list.
                         GameObject playerTile = (GameObject)Instantiate(floorList[Random.Range(0, floorList.Count - 1)], new Vector3(room.GridPosX + j, room.GridPosY + i, 0), Quaternion.identity);
-                        playerTile.name = "SpawnLocation";
+                        playerTile.name = "Floor[" + i + "," + j + "]";
                         // Mark the clone as a child of the current GameObject
-                        playerTile.transform.parent = roomClone.transform;
+                        playerTile.transform.parent = floors.transform;
+                        break;
+                    // Spawn an item
+                    case 'I':
+                        GameObject itemTile = (GameObject)Instantiate(floorList[Random.Range(0, floorList.Count - 1)], new Vector3(room.GridPosX + j, room.GridPosY + i, 0), Quaternion.identity);
+                        itemTile.name = "Floor[" + i + "," + j + "]";
+                        // Mark the clone as a child of the current GameObject
+                        itemTile.transform.parent = floors.transform;
+
+                        // Create a clone from the item prefab.
+                        GameObject itemClone = (GameObject)Instantiate(item, new Vector3(room.GridPosX + j, room.GridPosY + i, 0), Quaternion.identity);
+                        itemClone.name = "Item";
+                        // Mark the clone as a child of the current GameObject
+                        itemClone.transform.parent = roomClone.transform;
                         break;
                 }
             }

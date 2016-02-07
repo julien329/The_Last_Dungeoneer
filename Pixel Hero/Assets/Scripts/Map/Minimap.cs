@@ -5,6 +5,7 @@ public class Minimap : MonoBehaviour {
 
     public GameObject panel;
     public GameObject door;
+    public GameObject itemIcon;
     public Transform player;
 
     private string[,] minimap;
@@ -74,24 +75,28 @@ public class Minimap : MonoBehaviour {
         {
             minimap[i + 1, j] = "semiVisible";
             tabPanels[i + 1, j].GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f);
+            revealIcons(i + 1, j);
         }
         //Check for room under if there is a door connecting with it. If so, set to semiVisible and grey color.
         if (!OutOfBounds(i - 1, j) && (BaseMap.tabRooms[i, j].getDoor(1)) && (BaseMap.tabRooms[i - 1, j] != null) && (minimap[i - 1, j] == "notVisible"))
         {
             minimap[i - 1, j] = "semiVisible";
             tabPanels[i - 1, j].GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f);
+            revealIcons(i - 1, j);
         }
         //Check for room to the right if there is a door connecting with it. If so, set to semiVisible and grey color.
         if (!OutOfBounds(i, j + 1) && (BaseMap.tabRooms[i, j].getDoor(3)) && (BaseMap.tabRooms[i, j + 1] != null) && (minimap[i, j + 1] == "notVisible"))
         {
             minimap[i, j + 1] = "semiVisible";
             tabPanels[i, j + 1].GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f);
+            revealIcons(i, j + 1);
         }
         //Check for room to the left if there is a door connecting with it. If so, set to semiVisible and grey color.
         if (!OutOfBounds(i, j - 1) && (BaseMap.tabRooms[i, j].getDoor(2)) && (BaseMap.tabRooms[i, j - 1] != null) && (minimap[i, j - 1] == "notVisible"))
         {
             minimap[i, j - 1] = "semiVisible";
             tabPanels[i, j - 1].GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f);
+            revealIcons(i, j - 1);
         }
     }
 
@@ -132,6 +137,18 @@ public class Minimap : MonoBehaviour {
         }
     }
 
+    // Reveal minimap icons on special rooms.
+    void revealIcons(int i, int j)
+    {
+        // If the room is an ItemRoom
+        if(BaseMap.tabRooms[i, j].GetType() == typeof(ItemRoom))
+        {
+            // Instanciate copy of original prefab
+            GameObject itemIconClone = (GameObject)Instantiate(itemIcon, new Vector3((j * roomWidth) + (roomWidth / 2), (i * roomHeight) + (roomHeight / 2), 0), Quaternion.identity);
+            itemIconClone.transform.parent = transform;
+        }
+    }
+
     // Instanciate minimap room panels
     void InstanciatePanels()
     {
@@ -156,8 +173,10 @@ public class Minimap : MonoBehaviour {
         }
     }
 
+    // Check if the given position is out of bounds
     bool OutOfBounds(int i, int j)
     {
+        // Check at every limit of the array
         if (i < 0 || i >= roomGridY || j < 0 || j >= roomGridX)
             return true;
         return false;

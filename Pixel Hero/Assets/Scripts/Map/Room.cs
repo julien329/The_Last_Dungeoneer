@@ -8,7 +8,7 @@ public abstract class Room {
     public abstract void CreateRoom();
 
     // Connect a room with current room (this) with a door in the middle of width or height
-    public void ConnectRoom(ref Room room)
+    public void ConnectRoom(Room room)
     {
         // If current room is after the other room
         if (gridPosX > room.GridPosX)
