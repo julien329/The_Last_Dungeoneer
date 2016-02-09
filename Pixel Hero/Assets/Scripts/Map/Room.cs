@@ -45,6 +45,12 @@ public abstract class Room {
 
     }
 
+    public int DistanceFrom(int i, int j)
+    {
+        return (Mathf.Abs((gridPosX / BaseMap.roomWidth) - j) + Mathf.Abs((gridPosY / roomHeight) - i));
+    }
+
+
     // Get char tile of i,j position
     public char getTile(int i, int j)
     {

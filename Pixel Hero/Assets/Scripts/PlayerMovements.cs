@@ -17,7 +17,6 @@ public class PlayerMovements : MonoBehaviour {
     private Vector3 move;
     private Rigidbody2D playerRigidbody;
     private Animator anim;
-    private AnimatorStateInfo currentBaseState;
 
     private float attackTimer = 0;
     static public  float staminaTimer = 0;

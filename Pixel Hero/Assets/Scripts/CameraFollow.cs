@@ -8,7 +8,6 @@ public class CameraFollow : MonoBehaviour {
     public Transform minimap;
 
     private Vector3 offset;                     // The initial offset from the target.
-    private  Vector3 newPosition;
     private Camera cam;
 
     private int playerPositionX;

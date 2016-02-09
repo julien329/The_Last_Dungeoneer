@@ -6,6 +6,8 @@ public class Minimap : MonoBehaviour {
     public GameObject panel;
     public GameObject door;
     public GameObject itemIcon;
+    public GameObject bossIcon;
+    public GameObject bossKeyIcon;
     public Transform player;
 
     private string[,] minimap;
@@ -147,6 +149,21 @@ public class Minimap : MonoBehaviour {
             GameObject itemIconClone = (GameObject)Instantiate(itemIcon, new Vector3((j * roomWidth) + (roomWidth / 2), (i * roomHeight) + (roomHeight / 2), 0), Quaternion.identity);
             itemIconClone.transform.parent = transform;
         }
+        // If the room is an BossRoom
+        if (BaseMap.tabRooms[i, j].GetType() == typeof(BossRoom))
+        {
+            // Instanciate copy of original prefab
+            GameObject bossIconClone = (GameObject)Instantiate(bossIcon, new Vector3((j * roomWidth) + (roomWidth / 2), (i * roomHeight) + (roomHeight / 2), 0), Quaternion.identity);
+            bossIconClone.transform.parent = transform;
+        }
+        // If the room is an KeyRoom
+        if (BaseMap.tabRooms[i, j].GetType() == typeof(KeyRoom))
+        {
+            // Instanciate copy of original prefab
+            GameObject bossKeyIconClone = (GameObject)Instantiate(bossKeyIcon, new Vector3((j * roomWidth) + (roomWidth / 2), (i * roomHeight) + (roomHeight / 2), 0), Quaternion.identity);
+            bossKeyIconClone.transform.parent = transform;
+        }
+
     }
 
     // Instanciate minimap room panels

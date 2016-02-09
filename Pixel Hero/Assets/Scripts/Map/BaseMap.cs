@@ -26,13 +26,14 @@ public class BaseMap : MonoBehaviour
     private float restartTimer = 0;
 
     public static Room[,] tabRooms;
-    
+
 
     // Use this for initialization (called before all Start())
     void Awake()
     {
         InitialiseRooms();
         GenerateDungeon();
+        AddBossAndKeyRooms();
         AddItemRoom();
         PrintRooms();
         SpawnPlayer();
@@ -117,6 +118,53 @@ public class BaseMap : MonoBehaviour
         }
     }
 
+    // Add a boss and KeyRoom away from each other
+    void AddBossAndKeyRooms()
+    {
+        // Create boss room first at the farthest position in the map from the spawnpoint
+        int[] posBoss = FarthestRoomFrom(roomGridY / 2, roomGridX / 2);
+        tabRooms[posBoss[0], posBoss[1]] = new BossRoom(roomWidth, roomHeight, posBoss[1] * roomWidth, posBoss[0] * roomHeight);
+        ConnectToExistingRooms(posBoss[0], posBoss[1]);
+
+        // Create keyRoom at the farthest position from the created boss room
+        int[] posKey = FarthestRoomFrom(posBoss[0], posBoss[1]);
+        tabRooms[posKey[0], posKey[1]] = new KeyRoom(roomWidth, roomHeight, posKey[1] * roomWidth, posKey[0] * roomHeight);
+        ConnectToExistingRooms(posKey[0], posKey[1]);
+    }
+
+    // Find the farthest position in the map from the given coordinates
+    int[] FarthestRoomFrom(int y, int x)
+    {
+        // Initialize max distance and the position it has been found.
+        int max = 0;
+        int[] position = new int[2];
+
+        // Scan the map
+        for (int i = 0; i < roomGridY; i++)
+        {
+            for (int j = 0; j < roomGridX; j++)
+            {
+                // Make sure there is a room and that it is a standartRoom
+                if (tabRooms[i, j] != null && tabRooms[i, j].GetType() == typeof(StandartRoom))
+                {
+                    // If new distance is greater, save new max and postion
+                    if (tabRooms[i, j].DistanceFrom(y, x) > max)
+                    {
+                        max = tabRooms[i, j].DistanceFrom(y, x);
+                        position[0] = i; position[1] = j;
+                    }
+                    // If the distance is equal to max, save new position if the has haas less neightbours (prefer a more isolated room)
+                    else if (tabRooms[i, j].DistanceFrom(y, x) == max && tabRooms[i, j].NumberOfNeighbors < tabRooms[position[0], position[1]].NumberOfNeighbors)
+                    {
+                        position[0] = i; position[1] = j;
+                    }
+                }
+            }
+        }
+        return position;
+    }
+
+
     // Add an item room to the map, replacing a standart room
     void AddItemRoom()
     {
@@ -125,21 +173,27 @@ public class BaseMap : MonoBehaviour
         do {
             i = Random.Range(0, roomGridY - 1);
             j = Random.Range(0, roomGridX - 1);
-        } while (tabRooms[i, j] == null || tabRooms[i, j].GetType() != typeof(StandartRoom));
+        } while (tabRooms[i, j] == null || tabRooms[i, j].GetType() != typeof(StandartRoom) || tabRooms[i, j].NumberOfNeighbors > 2);
+       
         // Replace the room with an item room
         tabRooms[i,j] = new ItemRoom(roomWidth, roomHeight, j * roomWidth, i * roomHeight);
+        ConnectToExistingRooms(i, j);
+    }
 
-        // Check for doors in neightbors room for possible connections.
-        if (tabRooms[i + 1, j] != null && tabRooms[i + 1, j].getDoor(1))
+    // Check for doors in neightbors room for possible connections.
+    void ConnectToExistingRooms(int i, int j)
+    {
+        // Connect the room at the given position if the rooms around have a door for it.
+        if (!OutOfBounds(i + 1, j) && tabRooms[i + 1, j] != null && tabRooms[i + 1, j].getDoor(1))
             tabRooms[i, j].ConnectRoom(tabRooms[i + 1, j]);
 
-        if (tabRooms[i - 1, j] != null && tabRooms[i - 1, j].getDoor(0))
+        if (!OutOfBounds(i - 1, j) && tabRooms[i - 1, j] != null && tabRooms[i - 1, j].getDoor(0))
             tabRooms[i, j].ConnectRoom(tabRooms[i - 1, j]);
 
-        if (tabRooms[i, j + 1] != null && tabRooms[i, j + 1].getDoor(2))
+        if (!OutOfBounds(i, j + 1) && tabRooms[i, j + 1] != null && tabRooms[i, j + 1].getDoor(2))
             tabRooms[i, j].ConnectRoom(tabRooms[i, j + 1]);
 
-        if (tabRooms[i, j - 1] != null && tabRooms[i, j - 1].getDoor(3))
+        if (!OutOfBounds(i, j - 1) && tabRooms[i, j - 1] != null && tabRooms[i, j - 1].getDoor(3))
             tabRooms[i, j].ConnectRoom(tabRooms[i, j - 1]);
     }
 
