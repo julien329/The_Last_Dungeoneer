@@ -68,6 +68,10 @@ public class Minimap : MonoBehaviour {
     // Reveal neighbors of a room in grey color on the minimap
     void revealNeighbors(int i, int j)
     {
+        // If player is a L33T HAXOR and goes out of map, update minimap when coming he comes back
+        if(minimap[i, j] == "notVisible")
+            revealIcons(i, j);
+
         // Get current room and set it to full visible and white color.
         tabPanels[i, j].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
         minimap[i, j] = "fullVisible";

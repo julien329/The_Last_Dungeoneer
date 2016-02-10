@@ -25,6 +25,7 @@ public class PlayerMovements : MonoBehaviour {
     private bool running = false;
     private bool moving;
     private float speed;
+    private bool weaponEquiped = false;
 
     // Use this for initialization
     void Start()
@@ -163,41 +164,55 @@ public class PlayerMovements : MonoBehaviour {
     // Activate proper sword hit collider according to the current mechanim animation state (Up, down, left, right).
     private void SwordHitCollider()
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerIdleRight"))
+        if (weaponEquiped)
+        {
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerIdleRight"))
+            {
+                hitColliders[0].SetActive(false);
+                hitColliders[1].SetActive(false);
+                hitColliders[2].SetActive(false);
+                hitColliders[3].SetActive(true);
+            }
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerIdleLeft"))
+            {
+                hitColliders[0].SetActive(false);
+                hitColliders[1].SetActive(false);
+                hitColliders[2].SetActive(true);
+                hitColliders[3].SetActive(false);
+            }
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerIdleUp"))
+            {
+                hitColliders[0].SetActive(true);
+                hitColliders[1].SetActive(false);
+                hitColliders[2].SetActive(false);
+                hitColliders[3].SetActive(false);
+            }
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerIdleDown"))
+            {
+                hitColliders[0].SetActive(false);
+                hitColliders[1].SetActive(true);
+                hitColliders[2].SetActive(false);
+                hitColliders[3].SetActive(false);
+            }
+        }
+        else
         {
             hitColliders[0].SetActive(false);
             hitColliders[1].SetActive(false);
-            hitColliders[2].SetActive(false);
-            hitColliders[3].SetActive(true);
-        }
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerIdleLeft"))
-        {
-            hitColliders[0].SetActive(false);
-            hitColliders[1].SetActive(false);
-            hitColliders[2].SetActive(true);
-            hitColliders[3].SetActive(false);
-        }
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerIdleUp"))
-        {
-            hitColliders[0].SetActive(true);
-            hitColliders[1].SetActive(false);
-            hitColliders[2].SetActive(false);
-            hitColliders[3].SetActive(false);
-        }
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerIdleDown"))
-        {
-            hitColliders[0].SetActive(false);
-            hitColliders[1].SetActive(true);
             hitColliders[2].SetActive(false);
             hitColliders[3].SetActive(false);
         }
     }
 
-    void OnTriggerStay2D(Collider2D other)
+    public void EquipSword()
     {
-        // Destroy gameObject colliding with sword hitbox
+        anim.SetLayerWeight(1, 100);
+        weaponEquiped = true;
+    }
+
+    public void AttackCollision(Collider2D other)
+    {
         if (attacking)
             Destroy(other.gameObject);
     }
-
 }

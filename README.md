@@ -1,7 +1,7 @@
 # Pixel-Hero (Personnal game project)
 
 ## Current Status
-In developpement (Build Pre-Alpha 3 available in builds section)
+In developpement (Build Pre-Alpha 5 available in builds section)
 
 ## Description
 * A 2D top down RPG style game, where you go through a random generated dungeon, floor by floor.
@@ -17,7 +17,7 @@ In developpement (Build Pre-Alpha 3 available in builds section)
 * Dark Souls
 
 ## To-do
-* HUD + minimap
+* HUD
 * Combat system + weapons
 * Skill tree and XP system
 * Ennemies/Bosses + AI
@@ -33,14 +33,22 @@ In developpement (Build Pre-Alpha 3 available in builds section)
 
 ## Done
 * Dungeon floor structure algorithm
+* Base structure for : standart, item, key and boss rooms.
 * Basic sprite decoration
-* Hero walking/running animations and sprites
+* Hero animations,sprites and hitboxes (fists and sword only).
+* Pickup weapon and destroy wall with it (temporarily, for the lolz)
 * Dungeon music (only one)
 * Stamina management system.
-* Sword animations and hitbox.
 * Basic minimap(not completed)
 * Camera intelligent follow and pathing
 * Stamina and Health bar
+* Minimap and special rooms icons
+
+## Controls
+* (w, a, s, d) to move
+* Left mouse clic or leftCTRL to attack
+* Press 'r' for 1 sec to regenerate the map
+* Walk on items to pick them up (sword)
 
 ## Contributors
 * Julien Charbonneau (me)

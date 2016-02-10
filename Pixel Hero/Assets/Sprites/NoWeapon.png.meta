@@ -1,0 +1,250 @@
+fileFormatVersion: 2
+guid: 701a249656ba0ae4dbf723e1c6a8f53b
+timeCreated: 1455077836
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Punch_Up_01
+    21300002: Punch_Up_02
+    21300004: Punch_Up_03
+    21300006: Punch_Left_01
+    21300008: Punch_Left_02
+    21300010: Punch_Left_03
+    21300012: Punch_Down_01
+    21300014: Punch_Down_02
+    21300016: Punch_Down_03
+    21300018: Punch_Right_01
+    21300020: Punch_Right_02
+    21300022: Punch_Right_03
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Punch_Up_01
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 198
+        width: 27
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5000001, y: 0.32650152}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Punch_Up_02
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 198
+        width: 27
+        height: 49
+      alignment: 9
+      pivot: {x: 0.5232787, y: 0.34286904}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Punch_Up_03
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 198
+        width: 36
+        height: 49
+      alignment: 9
+      pivot: {x: 0.45198822, y: 0.33966252}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.271576, y: 32.356537}
+        - {x: -16.271576, y: -13.643463}
+        - {x: -15.271576, y: -16.643463}
+        - {x: 16.728424, y: -16.643463}
+        - {x: 19.728424, y: -8.643463}
+        - {x: 19.728424, y: 27.356537}
+        - {x: 13.728424, y: 32.356537}
+    - name: Punch_Left_01
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 135
+        width: 25
+        height: 48
+      alignment: 9
+      pivot: {x: 0.42111284, y: 0.3010521}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Punch_Left_02
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 134
+        width: 34
+        height: 50
+      alignment: 9
+      pivot: {x: 0.45420635, y: 0.3069339}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12.556984, y: 34.653305}
+        - {x: -7.443016, y: 34.653305}
+        - {x: -15.443016, y: 23.653305}
+        - {x: -15.443016, y: -13.346695}
+        - {x: -13.443016, y: -15.346695}
+        - {x: 18.556984, y: -15.346695}
+        - {x: 18.556984, y: 20.653305}
+        - {x: 15.556984, y: 33.653305}
+    - name: Punch_Left_03
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 135
+        width: 33
+        height: 50
+      alignment: 9
+      pivot: {x: 0.44023687, y: 0.31108582}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6.527817, y: 34.44571}
+        - {x: -14.527817, y: 31.44571}
+        - {x: -14.527817, y: -7.554291}
+        - {x: -7.527817, y: -15.554291}
+        - {x: 18.472183, y: -15.554291}
+        - {x: 18.472183, y: 34.44571}
+    - name: Punch_Down_01
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 69
+        width: 27
+        height: 51
+      alignment: 9
+      pivot: {x: 0.5148429, y: 0.30512118}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Punch_Down_02
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 69
+        width: 35
+        height: 52
+      alignment: 9
+      pivot: {x: 0.42882362, y: 0.3183519}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9.008827, y: 35.4457}
+        - {x: -15.008827, y: 27.445702}
+        - {x: -15.008827, y: -16.554298}
+        - {x: 17.991173, y: -16.554298}
+        - {x: 19.991173, y: -10.554298}
+        - {x: 19.991173, y: 20.445702}
+        - {x: 12.991173, y: 35.4457}
+    - name: Punch_Down_03
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 69
+        width: 39
+        height: 52
+      alignment: 9
+      pivot: {x: 0.41217002, y: 0.31635576}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12.074631, y: 35.5495}
+        - {x: -16.07463, y: 32.5495}
+        - {x: -16.07463, y: -16.4505}
+        - {x: 22.92537, y: -16.4505}
+        - {x: 22.92537, y: 35.5495}
+    - name: Punch_Right_01
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 9
+        width: 26
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5986486, y: 0.2955311}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Punch_Right_02
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 8
+        width: 34
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5447908, y: 0.30929047}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12.522888, y: 34.535477}
+        - {x: -18.522888, y: 32.535477}
+        - {x: -18.522888, y: -8.464523}
+        - {x: -16.522888, y: -15.464523}
+        - {x: 10.477112, y: -15.464523}
+        - {x: 15.477112, y: -10.464523}
+        - {x: 15.477112, y: 29.535477}
+        - {x: 9.477112, y: 34.535477}
+    - name: Punch_Right_03
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 9
+        width: 33
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5607212, y: 0.30929047}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14.503799, y: 34.535477}
+        - {x: -18.5038, y: 33.535477}
+        - {x: -18.5038, y: -11.464523}
+        - {x: -17.5038, y: -15.464523}
+        - {x: 9.496201, y: -15.464523}
+        - {x: 14.496201, y: -1.4645233}
+        - {x: 14.496201, y: 26.535477}
+        - {x: 8.496201, y: 34.535477}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
