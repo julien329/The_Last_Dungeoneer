@@ -1,0 +1,135 @@
+fileFormatVersion: 2
+guid: 2eeecacdcd1ae3b42b11554c771b243f
+timeCreated: 1455224491
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: SwordSpinAnimation_Up
+    21300002: SwordSpinAnimation_Left
+    21300004: SwordSpinAnimation_Right
+    21300006: SwordSpinAnimation_Down
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: SwordSpinAnimation_Up
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 179
+        width: 36
+        height: 63
+      alignment: 9
+      pivot: {x: 0.641556, y: 0.26297578}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13.096016, y: 46.432526}
+        - {x: -23.096016, y: 40.432526}
+        - {x: -23.096016, y: -16.567474}
+        - {x: 12.903984, y: -16.567474}
+        - {x: 12.903984, y: 44.432526}
+        - {x: 11.903984, y: 46.432526}
+    - name: SwordSpinAnimation_Left
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 92
+        width: 53
+        height: 63
+      alignment: 9
+      pivot: {x: 0.72807974, y: 0.4680205}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14.588226, y: 33.51471}
+        - {x: -23.588226, y: 29.51471}
+        - {x: -38.588226, y: 6.5147095}
+        - {x: -38.588226, y: -29.48529}
+        - {x: 14.411774, y: -29.48529}
+        - {x: 14.411774, y: 33.51471}
+    - name: SwordSpinAnimation_Right
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 108
+        width: 53
+        height: 48
+      alignment: 9
+      pivot: {x: 0.27639252, y: 0.30001083}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10.351196, y: 27.59948}
+        - {x: 16.351196, y: 20.59948}
+        - {x: 13.351196, y: 24.59948}
+        - {x: 5.3511963, y: 33.59948}
+        - {x: -14.648804, y: 33.59948}
+        - {x: -14.648804, y: -14.40052}
+        - {x: 25.351196, y: -14.40052}
+        - {x: 38.351196, y: -11.40052}
+        - {x: 38.351196, y: 14.59948}
+        - {x: 37.351196, y: 16.59948}
+        - {x: 24.351196, y: 29.59948}
+        - {x: 10.351196, y: 31.59948}
+    - name: SwordSpinAnimation_Down
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 17
+        width: 60
+        height: 67
+      alignment: 9
+      pivot: {x: 0.2511247, y: 0.47169846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15.067482, y: 35.396202}
+        - {x: -15.067482, y: -31.603798}
+        - {x: 40.932518, y: -31.603798}
+        - {x: 44.932518, y: -29.603798}
+        - {x: 44.932518, y: 17.396202}
+        - {x: 34.932518, y: 35.396202}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

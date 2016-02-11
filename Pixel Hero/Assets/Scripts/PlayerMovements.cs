@@ -26,6 +26,7 @@ public class PlayerMovements : MonoBehaviour {
     private bool moving;
     private float speed;
     private bool weaponEquiped = false;
+    //private bool weaponIsSword = false;
 
     // Use this for initialization
     void Start()
@@ -42,12 +43,17 @@ public class PlayerMovements : MonoBehaviour {
         Stamina();
 
         // Stop moving if attacking
-        if(!attacking)
+        if (!attacking)
             Move();
 
         // Set sprite sorting order according to vertical position
         GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
         SwordHitCollider();
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            anim.SetTrigger("Spin");
+        }
     }
 
     private void Attack()
@@ -208,6 +214,7 @@ public class PlayerMovements : MonoBehaviour {
     {
         anim.SetLayerWeight(1, 100);
         weaponEquiped = true;
+        anim.SetBool("SwordEquipped", true);
     }
 
     public void AttackCollision(Collider2D other)
