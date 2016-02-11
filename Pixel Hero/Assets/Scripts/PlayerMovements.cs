@@ -13,20 +13,23 @@ public class PlayerMovements : MonoBehaviour {
     public float staminaRun;
     public float staminaRegen;
     public float staminaSword;
+    public float spinCooldown = 5;
 
     private Vector3 move;
     private Rigidbody2D playerRigidbody;
     private Animator anim;
 
     private float attackTimer = 0;
-    static public  float staminaTimer = 0;
+    private float spinTimer = 0;
+    static public float staminaTimer = 0;
     static public float stamina = 100f;
     private bool attacking = false;
     private bool running = false;
     private bool moving;
     private float speed;
+    private bool spinning = false;
     private bool weaponEquiped = false;
-    //private bool weaponIsSword = false;
+    private bool weaponIsSword = false;
 
     // Use this for initialization
     void Start()
@@ -40,6 +43,8 @@ public class PlayerMovements : MonoBehaviour {
     {
         Run();
         Attack();
+        if(weaponIsSword)
+            SpecialAttacksSword();
         Stamina();
 
         // Stop moving if attacking
@@ -49,11 +54,25 @@ public class PlayerMovements : MonoBehaviour {
         // Set sprite sorting order according to vertical position
         GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
         SwordHitCollider();
+    }
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+    private void SpecialAttacksSword()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && !running && spinTimer == 0)
         {
             anim.SetTrigger("Spin");
+            spinTimer = spinCooldown;
+            spinning = true;
         }
+        if (spinTimer > 0)
+            spinTimer -= Time.deltaTime;
+        if(spinTimer <= 0)
+        {
+            spinTimer = 0;
+            spinning = false;
+        }
+
+        Debug.Log(spinTimer, gameObject);
     }
 
     private void Attack()
@@ -66,7 +85,7 @@ public class PlayerMovements : MonoBehaviour {
             attacking = false;
 
         // Poll for attack input if not running and have enough stamina
-        if (Input.GetButtonDown("Fire1") && !running && stamina > 0)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && !running && stamina > 0)
         {
             // Put a delay between attacks, set attack animation and apply stamina cost
             attacking = true;
@@ -214,7 +233,7 @@ public class PlayerMovements : MonoBehaviour {
     {
         anim.SetLayerWeight(1, 100);
         weaponEquiped = true;
-        anim.SetBool("SwordEquipped", true);
+        weaponIsSword = true;
     }
 
     public void AttackCollision(Collider2D other)

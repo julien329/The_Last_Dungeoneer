@@ -1,7 +1,7 @@
 # Pixel-Hero (Personnal game project)
 
 ## Current Status
-In developpement (Build Pre-Alpha 5 available in builds section)
+In developpement (Build Pre-Alpha 6 available in builds section)
 
 ## Description
 * A 2D top down RPG style game, where you go through a random generated dungeon, floor by floor.
@@ -46,7 +46,8 @@ In developpement (Build Pre-Alpha 5 available in builds section)
 
 ## Controls
 * (w, a, s, d) to move
-* Left mouse clic or leftCTRL to attack
+* Up arrow to base attack
+* Left arrow to spin to win
 * Press 'r' for 1 sec to regenerate the map
 * Walk on items to pick them up (sword)
 
