@@ -58,21 +58,16 @@ public class PlayerMovements : MonoBehaviour {
 
     private void SpecialAttacksSword()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && !running && spinTimer == 0)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && !running && spinTimer <= 0)
         {
             anim.SetTrigger("Spin");
             spinTimer = spinCooldown;
+            InvokeRepeating("SwordSpinCooldown", 1f, 1f);
             spinning = true;
         }
-        if (spinTimer > 0)
-            spinTimer -= Time.deltaTime;
-        if(spinTimer <= 0)
-        {
-            spinTimer = 0;
-            spinning = false;
-        }
 
-        Debug.Log(spinTimer, gameObject);
+        if(spinTimer > 0)
+            spinning = anim.GetCurrentAnimatorStateInfo(1).IsName("SwordSpin");
     }
 
     private void Attack()
@@ -98,7 +93,7 @@ public class PlayerMovements : MonoBehaviour {
     private void Run()
     {
         // Pool for run input
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && !spinning)
         {
             // If have enought stamina
             if (stamina > 0)
@@ -241,4 +236,15 @@ public class PlayerMovements : MonoBehaviour {
         if (attacking)
             Destroy(other.gameObject);
     }
+
+
+    /**************************************************** Special Attacks Countdown****************************************/
+
+    void SwordSpinCooldown()
+    {
+        spinTimer--;
+        if (spinTimer <= 0)
+            CancelInvoke("SwordSpinCooldown");
+    }
+
 }
