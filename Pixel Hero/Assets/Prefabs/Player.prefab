@@ -453,6 +453,7 @@ MonoBehaviour:
   - {fileID: 175976}
   - {fileID: 145028}
   - {fileID: 174668}
+  hud: {fileID: 0}
   walkSpeed: 6
   runSpeed: 9
   attackCooldown: 0.25
@@ -460,6 +461,7 @@ MonoBehaviour:
   staminaRun: 10
   staminaRegen: 15
   staminaSword: 5
+  spinCooldown: 5
 --- !u!114 &11493274
 MonoBehaviour:
   m_ObjectHideFlags: 1

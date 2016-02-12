@@ -57,20 +57,12 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\AttackCollision.cs" />
-    <Compile Include="Assets\Scripts\CameraFollow.cs" />
-    <Compile Include="Assets\Scripts\HUDManager.cs" />
+    <Compile Include="Assets\Scripts\HUD\HUDManager.cs" />
     <Compile Include="Assets\Scripts\Map\BaseMap.cs" />
     <Compile Include="Assets\Scripts\Map\BossRoom.cs" />
     <Compile Include="Assets\Scripts\Map\ItemRoom.cs" />
@@ -79,8 +71,10 @@
     <Compile Include="Assets\Scripts\Map\Room.cs" />
     <Compile Include="Assets\Scripts\Map\StandartRoom.cs" />
     <Compile Include="Assets\Scripts\Map\StartingRoom.cs" />
-    <Compile Include="Assets\Scripts\PickSword.cs" />
-    <Compile Include="Assets\Scripts\PlayerMovements.cs" />
+    <Compile Include="Assets\Scripts\Player\AttackCollision.cs" />
+    <Compile Include="Assets\Scripts\Player\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\Player\PickSword.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerMovements.cs" />
     <Compile Include="Assets\Scripts\SortOrder.cs" />
   </ItemGroup>
   <ItemGroup>
