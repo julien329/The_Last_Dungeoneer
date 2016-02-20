@@ -130,6 +130,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
+--- !u!224 &264208050 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 22420318, guid: 8433c45812f666f43a9628aa06f52f10,
+    type: 2}
+  m_PrefabInternal: {fileID: 1253197537}
 --- !u!1 &665256428 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 177986, guid: 8433c45812f666f43a9628aa06f52f10, type: 2}
@@ -194,6 +199,11 @@ Transform:
   - {fileID: 946128965}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!224 &785296660 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 22459344, guid: 8433c45812f666f43a9628aa06f52f10,
+    type: 2}
+  m_PrefabInternal: {fileID: 1253197537}
 --- !u!4 &858424960 stripped
 Transform:
   m_PrefabParentObject: {fileID: 431040, guid: 4d027f3d92ebd7f409dd151c4e6b9fa6, type: 2}
@@ -350,6 +360,18 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11489472, guid: 8433c45812f666f43a9628aa06f52f10, type: 2}
+      propertyPath: staminaRecent
+      value: 
+      objectReference: {fileID: 264208050}
+    - target: {fileID: 11489472, guid: 8433c45812f666f43a9628aa06f52f10, type: 2}
+      propertyPath: staminaBar
+      value: 
+      objectReference: {fileID: 785296660}
+    - target: {fileID: 11489472, guid: 8433c45812f666f43a9628aa06f52f10, type: 2}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1642233710}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8433c45812f666f43a9628aa06f52f10, type: 2}
   m_IsPrefabParent: 0
@@ -418,6 +440,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!224 &1642233710 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 22405534, guid: 8433c45812f666f43a9628aa06f52f10,
+    type: 2}
+  m_PrefabInternal: {fileID: 1253197537}
 --- !u!1001 &1684013908
 Prefab:
   m_ObjectHideFlags: 0

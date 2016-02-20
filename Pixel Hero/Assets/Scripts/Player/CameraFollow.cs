@@ -8,6 +8,7 @@ public class CameraFollow : MonoBehaviour {
     public Transform minimap;
 
     private Vector3 offset;                     // The initial offset from the target.
+    private Vector3 targetCamPos;
     private Camera cam;
 
     private int playerPositionX;
@@ -26,37 +27,42 @@ public class CameraFollow : MonoBehaviour {
         width = height * cam.aspect;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         // Position of the player in the room grid of the map
         playerPositionX = (int)(target.position.x / BaseMap.roomWidth);
         playerPositionY = (int)(target.position.y / BaseMap.roomHeight);
 
         // Create a postion the camera is aiming for based on the offset from the target.
-        Vector3 targetCamPos = target.position + offset;
+        targetCamPos = target.position + offset;
 
-        // If a border of the camera collides with the room limit, stop following the player in the colliding direction
-        // Compare the position of the player with the limits of the room + half the camera dimensions, as the center of the camera follows the player.
-        if (target.position.x <= (playerPositionX * BaseMap.roomWidth) + (width / 2))
-            targetCamPos.x = (playerPositionX * BaseMap.roomWidth) + (width / 2);
-
-        if (target.position.x > ((playerPositionX + 1) * BaseMap.roomWidth) - (width / 2) - 1)
-            targetCamPos.x = ((playerPositionX + 1) * BaseMap.roomWidth) - (width / 2) - 1;
-
-        if (target.position.y <= (playerPositionY * BaseMap.roomHeight) + (height / 2))
-            targetCamPos.y = (playerPositionY * BaseMap.roomHeight) + (height / 2);
-
-        if (target.position.y > ((playerPositionY + 1) * BaseMap.roomHeight) - (height / 2) - 1)
-            targetCamPos.y = ((playerPositionY + 1) * BaseMap.roomHeight) - (height / 2) - 1;
-
-
-        // If the room is smaller than the camera size, focus on the middle of the room
-        if (BaseMap.roomWidth < width)
+        // If the room width is smaller than the camera width, focus on the middle of the room in x.
+        if (BaseMap.roomWidth <= width)
             targetCamPos.x = playerPositionX * BaseMap.roomWidth + BaseMap.roomWidth / 2;
+        else
+        {
+            // If the border of the camera collides with the room limit, stop following the player in the x colliding direction
+            // Compare the position of the player with the limits of the room + half the camera width, as the center of the camera follows the player.
+            if (target.position.x <= (playerPositionX * BaseMap.roomWidth) + (width / 2))
+                targetCamPos.x = (playerPositionX * BaseMap.roomWidth) + (width / 2);
 
-        if(BaseMap.roomHeight < height)
+            if (target.position.x > ((playerPositionX + 1) * BaseMap.roomWidth) - (width / 2) - 1)
+                targetCamPos.x = ((playerPositionX + 1) * BaseMap.roomWidth) - (width / 2) - 1;
+        }
+
+        // If the room height is smaller than the camera height, focus on the middle of the room in y.
+        if (BaseMap.roomHeight <= height)
             targetCamPos.y = playerPositionY * BaseMap.roomHeight + BaseMap.roomHeight / 2;
+        else
+        {
+            // If the border of the camera collides with the room limit, stop following the player in the y colliding direction
+            // Compare the position of the player with the limits of the room + half the camera height, as the center of the camera follows the player.
+            if (target.position.y <= (playerPositionY * BaseMap.roomHeight) + (height / 2))
+                targetCamPos.y = (playerPositionY * BaseMap.roomHeight) + (height / 2);
 
+            if (target.position.y > ((playerPositionY + 1) * BaseMap.roomHeight) - (height / 2) - 1)
+                targetCamPos.y = ((playerPositionY + 1) * BaseMap.roomHeight) - (height / 2) - 1;
+        }
    
         // Smoothly interpolate between the camera's current position and it's target position.
         transform.position = Vector3.Lerp(transform.position, targetCamPos, smoothing * Time.deltaTime);

@@ -89,7 +89,7 @@ public class PlayerMovements : MonoBehaviour {
             attacking = true;
             attackTimer = attackCooldown;
             anim.SetTrigger("Attack");
-            stamina -= staminaSword;
+            stamina = Mathf.Clamp(stamina - staminaSword, 0f, 100f);
         }
     }
 
@@ -108,7 +108,7 @@ public class PlayerMovements : MonoBehaviour {
                     speed = runSpeed;
                     anim.speed = 2;
                     running = true;
-                    stamina -= Time.deltaTime * staminaRun;
+                    stamina = Mathf.Clamp(stamina - (Time.deltaTime * staminaRun), 0f, 100f);
                 }
             }
             // If not enought stamina, walk instead.
@@ -130,12 +130,6 @@ public class PlayerMovements : MonoBehaviour {
 
     private void Stamina()
     {
-        // Set stamina min and max
-        if (stamina < 0)
-            stamina = 0;
-        if (stamina > 100)
-            stamina = 100;
-
         // If running or attacking, restart stamina regen cooldown
         if (running || attacking)
             staminaTimer = staminaCooldown;
@@ -146,7 +140,7 @@ public class PlayerMovements : MonoBehaviour {
 
         // If stamina is not full and cooldown is null, regen stamina
         if (stamina < 100 && staminaTimer <= 0)
-            stamina += Time.deltaTime * staminaRegen;
+            stamina = Mathf.Clamp(stamina + (Time.deltaTime * staminaRegen), 0f, 100f);
     }
 
     private void Move()

@@ -4,9 +4,9 @@ using System.Collections;
 
 public class HUDManager : MonoBehaviour {
 
-    public GameObject staminaBar;
-    public GameObject healthBar;
-    public GameObject recent;
+    public RectTransform staminaBar;
+    public RectTransform healthBar;
+    public RectTransform staminaRecent;
     public GameObject swordAbilities;
 
     private float staminaBarSize;
@@ -16,54 +16,77 @@ public class HUDManager : MonoBehaviour {
     private Image[] swordAbilitiesImage;
 
     // Use this for initialization
-    void Start ()
+    void Awake ()
     {
         // Save original stamina bar x size
-        staminaBarSize = staminaBar.transform.localScale.x;
-        healthBarSize = healthBar.transform.localScale.x;
+        staminaBarSize = staminaBar.localScale.x;
+        healthBarSize = healthBar.localScale.x;
 
+        // Get components for the swordAbilies object in the HUD
         swordCooldownsText = swordAbilities.GetComponentsInChildren<Text>();
         swordAbilitiesImage = swordAbilities.GetComponentsInChildren<Image>();
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    void Start()
     {
-        // Change the x size of the stamina bar in ratio with missing stamina
-        staminaBar.transform.localScale = new Vector3((PlayerMovements.stamina/100) * staminaBarSize, staminaBar.transform.localScale.y, staminaBar.transform.localScale.z);
-        healthBar.transform.localScale = new Vector3(healthBarSize, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+        StartCoroutine("StaminaUpdate");
+        StartCoroutine("HealthUpdate");
+    }
 
-        // Just before the stamina cooldown ends, remove the rencently used stamina secondary bar (hide behind stamina bar)
-        if (PlayerMovements.staminaTimer <= 0.25)
-            recent.transform.localScale = staminaBar.transform.localScale;
-
-        AbilitiesUpdate();
-	}
-
-    void AbilitiesUpdate()
+    IEnumerator StaminaUpdate()
     {
-        if(swordEquiped)
+        while (true)
         {
+            // Change the x size of the stamina bar in ratio with missing stamina
+            staminaBar.localScale = new Vector3((PlayerMovements.stamina / 100f) * staminaBarSize, staminaBar.localScale.y, staminaBar.localScale.z);
+            // Just before the stamina cooldown ends, remove the rencently used stamina secondary bar (hide behind stamina bar)
+            if (PlayerMovements.staminaTimer <= 0.25)
+                staminaRecent.localScale = staminaBar.localScale;
+            // Dont update if stamina is full
+            yield return new WaitUntil(() => PlayerMovements.stamina < 100);
+        }
+    }
+
+    IEnumerator HealthUpdate()
+    {
+        while (true)
+        {
+            healthBar.localScale = new Vector3(healthBarSize, healthBar.localScale.y, healthBar.localScale.z);
+            // Dont update if health is full
+            yield return new WaitUntil(() => false);
+        }
+    }
+
+    IEnumerator SwordAbilitiesUpdate()
+    {
+        // While the swordAbilities object is active in the HUD
+        while(swordAbilities.activeInHierarchy)
+        {
+            // If spin attack in cooldown
             if (PlayerMovements.spinTimer > 0)
             {
+                // Set cooldown text and apply black filter over the image
                 swordCooldownsText[0].text = PlayerMovements.spinTimer.ToString();
                 swordAbilitiesImage[0].color = new Color(0.2f, 0.2f, 0.2f);
             }
 
             else
             {
+                // Remove cooldown text and restore original color
                 swordCooldownsText[0].text = "";
                 swordAbilitiesImage[0].color = new Color(1f, 1f, 1f);
+                // Wait for an ability cooldown to start before restarting the coroutine
+                yield return new WaitUntil(()=> PlayerMovements.spinTimer > 0);
             }
+            // Update UI every .1 second
+            yield return new WaitForSeconds(.1f);
         }
     }
 
     public void ActivateSwordAbilities()
     {
+        // Activate the swordAbilities object in the HUD and stat the couroutine to manage it
         swordAbilities.SetActive(true);
-        swordEquiped = true;
-
-        foreach(Text text in swordCooldownsText)
-            text.text = "";
+        StartCoroutine("SwordAbilitiesUpdate");
     }
 }
