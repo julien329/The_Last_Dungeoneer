@@ -23,28 +23,17 @@ public class StandartRoom : Room {
     {
         for (int i = 0; i < roomHeight; i++)
         {
-            List<char> subList = new List<char>();
+            List<string> subList = new List<string>();
             for (int j = 0; j < roomWidth; j++)
             {
-                char tile = 'N';
+                string tile = "Null";
                 placeFloor(ref tile);
                 placeWall(ref tile, j);
+                placeCorner(ref tile, j);
 
                 subList.Add(tile);
             }
             tabTiles.Add(subList);
         }
-    }
-
-    // Place floor tiles
-    private void placeFloor(ref char tile)
-    {
-        tile = 'F'; 
-    }
-    // Place wall tiles around the room.
-    private void placeWall(ref char tile, int j)
-    {
-        if (tabTiles.Count == 0 || tabTiles.Count == roomHeight - 1 || j == 0 || j == roomWidth - 1)
-            tile = 'W';
     }
 }

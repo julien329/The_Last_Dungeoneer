@@ -167,21 +167,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floorList:
-  - {fileID: 106160, guid: 038998774947c4a8fa170d5b4492a7dd, type: 2}
-  - {fileID: 137908, guid: 41775b29042354678bcd58bb1a75871e, type: 2}
-  - {fileID: 125636, guid: 74398dca0c1f64f34aab8ba7bdb6c527, type: 2}
-  - {fileID: 177044, guid: ed4c829589732490894350b134530050, type: 2}
-  - {fileID: 109612, guid: 04993e7a7b0514f0c8857ff106529ce1, type: 2}
-  - {fileID: 127736, guid: 4cdf8ac85eff446d0a8fefbdc8c6569f, type: 2}
-  - {fileID: 110520, guid: 5535fd6cd705e4a79a1d5a4f114de5dc, type: 2}
-  - {fileID: 110520, guid: c18e9692903814865aa9a855aaa66df5, type: 2}
-  door: {fileID: 193968, guid: 40427b1940703de47b2b19d281da7a37, type: 2}
-  wall: {fileID: 145062, guid: d5183b38313e44c4587c2741da7f3b13, type: 2}
+  - {fileID: 191550, guid: 06350850c3154fc44a14dd0546b7f900, type: 2}
+  doorList:
+  - {fileID: 181708, guid: 2b8386ebeaaebca41991fde1b57ee8f2, type: 2}
+  - {fileID: 157010, guid: 2518cc2e7f09c5746b3f7ffd40171111, type: 2}
+  - {fileID: 165308, guid: ea2551b76edf5684aa9f6e7e3e740943, type: 2}
+  - {fileID: 198560, guid: 07aca0a4de2cd1d4a86c08b383137004, type: 2}
+  wallList:
+  - {fileID: 152132, guid: e5b85fa0df9b60745a669da527f87451, type: 2}
+  - {fileID: 188750, guid: c4877898ddbe7714fb54d5de23967697, type: 2}
+  - {fileID: 177696, guid: f6cd1bc1026d9b344bdc45f3eec5425e, type: 2}
+  - {fileID: 100824, guid: 8fc7ecf41bdcd934c9130578bd91c7d8, type: 2}
+  cornerList:
+  - {fileID: 106064, guid: 5842ffd0e2be23d478c271a0e5ef617f, type: 2}
+  - {fileID: 151314, guid: 392e884e29a273642b2677234279aa6f, type: 2}
+  - {fileID: 125808, guid: feec1a4cab52ae040895b58c6d02c53f, type: 2}
+  - {fileID: 127056, guid: 94edd917620ddce4d8ce4f134f7d45e9, type: 2}
   SpawnPoint: {fileID: 946128964}
   player: {fileID: 1767958426}
   item: {fileID: 108924, guid: 8ac05bf4d736b614eb46a6e1992e059b, type: 2}
   minimapCam: {fileID: 858424960}
   mainCam: {fileID: 1274412770}
+  roomHeight: 7
+  roomWidth: 9
+  roomGridX: 10
+  roomGridY: 10
+  tileWidth: 2
+  tileHeight: 2
   numberOfRoom: 10
   groupingFactor: 50
   maxNeighbours: 3
@@ -318,7 +330,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22430214, guid: 8433c45812f666f43a9628aa06f52f10, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 22430214, guid: 8433c45812f666f43a9628aa06f52f10, type: 2}
       propertyPath: m_AnchoredPosition.x
