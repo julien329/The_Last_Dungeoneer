@@ -30,8 +30,8 @@ public class CameraFollow : MonoBehaviour {
         width = height * cam.aspect;
 
         mapSettings = GameObject.Find("Map").GetComponent<BaseMap>();
-        roomWidth = mapSettings.roomWidth * mapSettings.tileWidth;
-        roomHeight = mapSettings.roomHeight * mapSettings.tileHeight;
+        roomWidth = mapSettings.roomWidth * mapSettings.tileSize;
+        roomHeight = mapSettings.roomHeight * mapSettings.tileSize;
     }
 
     void Update()

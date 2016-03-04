@@ -26,8 +26,8 @@ public class Minimap : MonoBehaviour {
     void Start ()
     {
         mapSettings = GameObject.Find("Map").GetComponent<BaseMap>();
-        roomWidth = mapSettings.roomWidth * mapSettings.tileWidth;
-        roomHeight = mapSettings.roomHeight * mapSettings.tileHeight;
+        roomWidth = mapSettings.roomWidth * mapSettings.tileSize;
+        roomHeight = mapSettings.roomHeight * mapSettings.tileSize;
         roomGridX = mapSettings.roomGridX;
         roomGridY = mapSettings.roomGridY;
         posCorrectionX = (roomWidth % 2 == 0) ? 1 : 0;

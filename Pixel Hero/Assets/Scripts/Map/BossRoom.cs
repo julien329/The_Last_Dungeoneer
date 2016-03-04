@@ -5,8 +5,9 @@ using System.Collections.Generic;
 public class BossRoom : Room {
 
     // Constructor
-    public BossRoom(int width, int height, int x, int y)
+    public BossRoom(int width, int height, int x, int y, int size)
     {
+        tileSize = size;
         roomWidth = width;
         roomHeight = height;
         gridPosX = x;

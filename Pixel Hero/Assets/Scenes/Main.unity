@@ -192,8 +192,7 @@ MonoBehaviour:
   roomWidth: 9
   roomGridX: 10
   roomGridY: 10
-  tileWidth: 2
-  tileHeight: 2
+  tileSize: 2
   numberOfRoom: 10
   groupingFactor: 50
   maxNeighbours: 3

@@ -47,7 +47,7 @@ public abstract class Room {
 
     public int DistanceFrom(int i, int j)
     {
-        return (Mathf.Abs((gridPosX / roomWidth) - j) + Mathf.Abs((gridPosY / roomHeight) - i));
+        return (Mathf.Abs((gridPosX / (roomWidth * tileSize)) - j) + Mathf.Abs((gridPosY / (roomHeight * tileSize)) - i));
     }
 
     // Place wall tiles around the room.
@@ -129,6 +129,7 @@ public abstract class Room {
     }
 
     //Protected attributes
+    protected int tileSize;
     protected int roomWidth;
     protected int roomHeight;
     protected int gridPosX;

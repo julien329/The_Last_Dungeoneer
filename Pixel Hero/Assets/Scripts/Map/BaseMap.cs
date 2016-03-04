@@ -19,8 +19,7 @@ public class BaseMap : MonoBehaviour
     public int roomWidth = 17;
     public int roomGridX = 10;
     public int roomGridY = 10;
-    public int tileWidth;
-    public int tileHeight;
+    public int tileSize;
     public int numberOfRoom = 15;
     public int groupingFactor = 100;
     public int maxNeighbours = 3;
@@ -62,7 +61,7 @@ public class BaseMap : MonoBehaviour
         // Basic Room array
         tabRooms = new Room[roomGridY, roomGridX];
         //Generate the starting room containing the player's spawnpoint at the middle of the map.
-        tabRooms[(roomGridY / 2), (roomGridX / 2)] = new StartingRoom(roomWidth, roomHeight, (roomGridX / 2) * (roomWidth * tileWidth), (roomGridY / 2) * (roomHeight * tileHeight));
+        tabRooms[(roomGridY / 2), (roomGridX / 2)] = new StartingRoom(roomWidth, roomHeight, (roomGridX / 2) * (roomWidth * tileSize), (roomGridY / 2) * (roomHeight * tileSize), tileSize);
     }
 
     // Generate rooms randomly in the array
@@ -108,7 +107,7 @@ public class BaseMap : MonoBehaviour
         // If room at given position is not a room, if random groupingFactor match and if there is not enough room yet, create a room at given position.
         if ((tabRooms[new_i, new_j] == null) && (Random.Range(0f, 100f) <= groupingFactor) && (roomCounter < numberOfRoom))
         {
-            tabRooms[new_i, new_j] = new StandartRoom(roomWidth, roomHeight, new_j * (tileWidth * roomWidth), new_i * (tileHeight * roomHeight));
+            tabRooms[new_i, new_j] = new StandartRoom(roomWidth, roomHeight, new_j * (tileSize * roomWidth), new_i * (tileSize * roomHeight), tileSize);
             // If creating the room occurs too many neightbours to any room in the grid, delete the room
             if (TooManyNeighbours())
                 tabRooms[new_i, new_j] = null;
@@ -126,12 +125,12 @@ public class BaseMap : MonoBehaviour
     {
         // Create boss room first at the farthest position in the map from the spawnpoint
         int[] posBoss = FarthestRoomFrom(roomGridY / 2, roomGridX / 2);
-        tabRooms[posBoss[0], posBoss[1]] = new BossRoom(roomWidth, roomHeight, (posBoss[1] * tileWidth) * roomWidth, (posBoss[0] * tileHeight) * roomHeight);
+        tabRooms[posBoss[0], posBoss[1]] = new BossRoom(roomWidth, roomHeight, posBoss[1] * (tileSize * roomWidth), posBoss[0] * (tileSize * roomHeight), tileSize);
         ConnectToExistingRooms(posBoss[0], posBoss[1]);
 
         // Create keyRoom at the farthest position from the created boss room
         int[] posKey = FarthestRoomFrom(posBoss[0], posBoss[1]);
-        tabRooms[posKey[0], posKey[1]] = new KeyRoom(roomWidth, roomHeight, (posKey[1] * tileWidth) * roomWidth, (posKey[0] * tileHeight) * roomHeight);
+        tabRooms[posKey[0], posKey[1]] = new KeyRoom(roomWidth, roomHeight, posKey[1] * (tileSize * roomWidth), posKey[0] * (tileSize * roomHeight), tileSize);
         ConnectToExistingRooms(posKey[0], posKey[1]);
     }
 
@@ -179,7 +178,7 @@ public class BaseMap : MonoBehaviour
         } while (tabRooms[i, j] == null || tabRooms[i, j].GetType() != typeof(StandartRoom) || tabRooms[i, j].NumberOfNeighbors > 2);
        
         // Replace the room with an item room
-        tabRooms[i,j] = new ItemRoom(roomWidth, roomHeight, (j * tileWidth) * roomWidth, (i * tileHeight) * roomHeight);
+        tabRooms[i,j] = new ItemRoom(roomWidth, roomHeight, (j * tileSize) * roomWidth, (i * tileSize) * roomHeight, tileSize);
         ConnectToExistingRooms(i, j);
     }
 
@@ -257,7 +256,7 @@ public class BaseMap : MonoBehaviour
                 {
                     GameObject roomClone = new GameObject(tabRooms[i, j].GetType().ToString() + "[" + i + "," + j + "]");
                     roomClone.transform.parent = transform;
-                    roomClone.transform.position = new Vector3((roomWidth * tileWidth) * j, (roomHeight * tileHeight) * i, 0);
+                    roomClone.transform.position = new Vector3((roomWidth * tileSize) * j, (roomHeight * tileSize) * i, 0);
                     InstanciateTiles(tabRooms[i, j], roomClone);
                 }
             }
@@ -290,7 +289,7 @@ public class BaseMap : MonoBehaviour
                     // Spawn a floor
                     case "Floor":
                         // Create a clone from a random prefab from the list.
-                        GameObject floorClone = (GameObject)Instantiate(floorList[Random.Range(0, floorList.Count - 1)], new Vector3(room.GridPosX + (j * tileWidth), room.GridPosY + (i * tileHeight), 0), Quaternion.identity);
+                        GameObject floorClone = (GameObject)Instantiate(floorList[Random.Range(0, floorList.Count - 1)], new Vector3(room.GridPosX + (j * tileSize), room.GridPosY + (i * tileSize), 0), Quaternion.identity);
                         floorClone.name = "Floor[" + i + "," + j + "]";
                         // Mark the clone as a child of the current GameObject
                         floorClone.transform.parent = floors.transform;
@@ -300,76 +299,76 @@ public class BaseMap : MonoBehaviour
                         // Move spawnpoint location
                         SpawnPoint.transform.position = new Vector3(room.GridPosX + j, room.GridPosY + i, 0);
                         // Create a clone from a random prefab from the list.
-                        GameObject playerTile = (GameObject)Instantiate(floorList[Random.Range(0, floorList.Count - 1)], new Vector3(room.GridPosX + (j * tileWidth), room.GridPosY + (i * tileHeight), 0), Quaternion.identity);
+                        GameObject playerTile = (GameObject)Instantiate(floorList[Random.Range(0, floorList.Count - 1)], new Vector3(room.GridPosX + (j * tileSize), room.GridPosY + (i * tileSize), 0), Quaternion.identity);
                         playerTile.name = "Floor[" + i + "," + j + "]";
                         // Mark the clone as a child of the current GameObject
                         playerTile.transform.parent = floors.transform;
                         break;
                     // Spawn an item
                     case "Item":
-                        GameObject itemTile = (GameObject)Instantiate(floorList[Random.Range(0, floorList.Count - 1)], new Vector3(room.GridPosX + (j * tileWidth), room.GridPosY + (i * tileHeight), 0), Quaternion.identity);
+                        GameObject itemTile = (GameObject)Instantiate(floorList[Random.Range(0, floorList.Count - 1)], new Vector3(room.GridPosX + (j * tileSize), room.GridPosY + (i * tileSize), 0), Quaternion.identity);
                         itemTile.name = "Floor[" + i + "," + j + "]";
                         // Mark the clone as a child of the current GameObject
                         itemTile.transform.parent = floors.transform;
 
                         // Create a clone from the item prefab.
-                        GameObject itemClone = (GameObject)Instantiate(item, new Vector3(room.GridPosX + (j * tileWidth), room.GridPosY + (i * tileHeight), 0), Quaternion.identity);
+                        GameObject itemClone = (GameObject)Instantiate(item, new Vector3(room.GridPosX + (j * tileSize), room.GridPosY + (i * tileSize), 0), Quaternion.identity);
                         itemClone.name = "Item";
                         // Mark the clone as a child of the current GameObject
                         itemClone.transform.parent = roomClone.transform;
                         break;
                     case "WallT":
                         // Create a clone from the original prefab.
-                        GameObject wallTClone = (GameObject)Instantiate(wallList[0], new Vector3(room.GridPosX + (j * tileWidth), room.GridPosY + (i * tileHeight), 0), Quaternion.identity);
+                        GameObject wallTClone = (GameObject)Instantiate(wallList[0], new Vector3(room.GridPosX + (j * tileSize), room.GridPosY + (i * tileSize), 0), Quaternion.identity);
                         wallTClone.name = "Wall[" + i + "," + j + "]";
                         // Mark the clone as a child of the current GameObject
                         wallTClone.transform.parent = walls.transform;
                         break;
                     case "WallB":
                         // Create a clone from the original prefab.
-                        GameObject wallBClone = (GameObject)Instantiate(wallList[1], new Vector3(room.GridPosX + (j * tileWidth), room.GridPosY + (i * tileHeight), 0), Quaternion.identity);
+                        GameObject wallBClone = (GameObject)Instantiate(wallList[1], new Vector3(room.GridPosX + (j * tileSize), room.GridPosY + (i * tileSize), 0), Quaternion.identity);
                         wallBClone.name = "Wall[" + i + "," + j + "]";
                         // Mark the clone as a child of the current GameObject
                         wallBClone.transform.parent = walls.transform;
                         break;
                     case "WallL":
                         // Create a clone from the original prefab.
-                        GameObject wallLClone = (GameObject)Instantiate(wallList[2], new Vector3(room.GridPosX + (j * tileWidth), room.GridPosY + (i * tileHeight), 0), Quaternion.identity);
+                        GameObject wallLClone = (GameObject)Instantiate(wallList[2], new Vector3(room.GridPosX + (j * tileSize), room.GridPosY + (i * tileSize), 0), Quaternion.identity);
                         wallLClone.name = "Wall[" + i + "," + j + "]";
                         // Mark the clone as a child of the current GameObject
                         wallLClone.transform.parent = walls.transform;
                         break;
                     case "WallR":
                         // Create a clone from the original prefab.
-                        GameObject wallRClone = (GameObject)Instantiate(wallList[3], new Vector3(room.GridPosX + (j * tileWidth), room.GridPosY + (i * tileHeight), 0), Quaternion.identity);
+                        GameObject wallRClone = (GameObject)Instantiate(wallList[3], new Vector3(room.GridPosX + (j * tileSize), room.GridPosY + (i * tileSize), 0), Quaternion.identity);
                         wallRClone.name = "Wall[" + i + "," + j + "]";
                         // Mark the clone as a child of the current GameObject
                         wallRClone.transform.parent = walls.transform;
                         break;
                     case "CornerBL":
                         // Create a clone from the original prefab.
-                        GameObject cornerBLClone = (GameObject)Instantiate(cornerList[2], new Vector3(room.GridPosX + (j * tileWidth), room.GridPosY + (i * tileHeight), 0), Quaternion.identity);
+                        GameObject cornerBLClone = (GameObject)Instantiate(cornerList[2], new Vector3(room.GridPosX + (j * tileSize), room.GridPosY + (i * tileSize), 0), Quaternion.identity);
                         cornerBLClone.name = "Corner[" + i + "," + j + "]";
                         // Mark the clone as a child of the current GameObject
                         cornerBLClone.transform.parent = walls.transform;
                         break;
                     case "CornerBR":
                         // Create a clone from the original prefab.
-                        GameObject cornerBRClone = (GameObject)Instantiate(cornerList[3], new Vector3(room.GridPosX + (j * tileWidth), room.GridPosY + (i * tileHeight), 0), Quaternion.identity);
+                        GameObject cornerBRClone = (GameObject)Instantiate(cornerList[3], new Vector3(room.GridPosX + (j * tileSize), room.GridPosY + (i * tileSize), 0), Quaternion.identity);
                         cornerBRClone.name = "Corner[" + i + "," + j + "]";
                         // Mark the clone as a child of the current GameObject
                         cornerBRClone.transform.parent = walls.transform;
                         break;
                     case "CornerTL":
                         // Create a clone from the original prefab.
-                        GameObject cornerTLClone = (GameObject)Instantiate(cornerList[0], new Vector3(room.GridPosX + (j * tileWidth), room.GridPosY + (i * tileHeight), 0), Quaternion.identity);
+                        GameObject cornerTLClone = (GameObject)Instantiate(cornerList[0], new Vector3(room.GridPosX + (j * tileSize), room.GridPosY + (i * tileSize), 0), Quaternion.identity);
                         cornerTLClone.name = "Corner[" + i + "," + j + "]";
                         // Mark the clone as a child of the current GameObject
                         cornerTLClone.transform.parent = walls.transform;
                         break;
                     case "CornerTR":
                         // Create a clone from the original prefab.
-                        GameObject cornerTRClone = (GameObject)Instantiate(cornerList[1], new Vector3(room.GridPosX + (j * tileWidth), room.GridPosY + (i * tileHeight), 0), Quaternion.identity);
+                        GameObject cornerTRClone = (GameObject)Instantiate(cornerList[1], new Vector3(room.GridPosX + (j * tileSize), room.GridPosY + (i * tileSize), 0), Quaternion.identity);
                         cornerTRClone.name = "Corner[" + i + "," + j + "]";
                         // Mark the clone as a child of the current GameObject
                         cornerTRClone.transform.parent = walls.transform;
@@ -377,7 +376,7 @@ public class BaseMap : MonoBehaviour
                     case "DoorT":
                         // Create a clone from the original prefab.
                         GameObject doorTClone = (GameObject)Instantiate(doorList[0]);
-                        doorTClone.transform.position = new Vector3(room.GridPosX + (j * tileWidth), room.GridPosY + (i * tileHeight), 0);
+                        doorTClone.transform.position = new Vector3(room.GridPosX + (j * tileSize), room.GridPosY + (i * tileSize), 0);
                         doorTClone.name = "Door[" + i + "," + j + "]";
                         // Mark the clone as a child of the current GameObject
                         doorTClone.transform.parent = doors.transform;
@@ -385,7 +384,7 @@ public class BaseMap : MonoBehaviour
                     case "DoorB":
                         // Create a clone from the original prefab.
                         GameObject doorBClone = (GameObject)Instantiate(doorList[1]);
-                        doorBClone.transform.position = new Vector3(room.GridPosX + (j * tileWidth), room.GridPosY + (i * tileHeight), 0);
+                        doorBClone.transform.position = new Vector3(room.GridPosX + (j * tileSize), room.GridPosY + (i * tileSize), 0);
                         doorBClone.name = "Door[" + i + "," + j + "]";
                         // Mark the clone as a child of the current GameObject
                         doorBClone.transform.parent = doors.transform;
@@ -393,7 +392,7 @@ public class BaseMap : MonoBehaviour
                     case "DoorL":
                         // Create a clone from the original prefab.
                         GameObject doorLClone = (GameObject)Instantiate(doorList[2]);
-                        doorLClone.transform.position = new Vector3(room.GridPosX + (j * tileWidth), room.GridPosY + (i * tileHeight), 0);
+                        doorLClone.transform.position = new Vector3(room.GridPosX + (j * tileSize), room.GridPosY + (i * tileSize), 0);
                         doorLClone.name = "Door[" + i + "," + j + "]";
                         // Mark the clone as a child of the current GameObject
                         doorLClone.transform.parent = doors.transform;
@@ -401,7 +400,7 @@ public class BaseMap : MonoBehaviour
                     case "DoorR":
                         // Create a clone from the original prefab.
                         GameObject doorRClone = (GameObject)Instantiate(doorList[3]);
-                        doorRClone.transform.position = new Vector3(room.GridPosX + (j * tileWidth), room.GridPosY + (i * tileHeight), 0);
+                        doorRClone.transform.position = new Vector3(room.GridPosX + (j * tileSize), room.GridPosY + (i * tileSize), 0);
                         doorRClone.name = "Door[" + i + "," + j + "]";
                         // Mark the clone as a child of the current GameObject
                         doorRClone.transform.parent = doors.transform;

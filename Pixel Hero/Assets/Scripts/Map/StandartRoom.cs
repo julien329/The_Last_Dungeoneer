@@ -6,8 +6,9 @@ using System.Collections.Generic;
 public class StandartRoom : Room {
 
     // Constructor
-    public StandartRoom(int width, int height, int x, int y)
+    public StandartRoom(int width, int height, int x, int y, int size)
     {
+        tileSize = size;
         roomWidth = width;
         roomHeight = height;
         gridPosX = x;

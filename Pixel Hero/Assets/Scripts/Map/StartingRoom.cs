@@ -6,8 +6,9 @@ using System.Collections.Generic;
 public class StartingRoom : Room {
 
     // Contructor
-    public StartingRoom(int width, int height, int x, int y)
+    public StartingRoom(int width, int height, int x, int y, int size)
     {
+        tileSize = size;
         roomWidth = width;
         roomHeight = height;
         gridPosX = x;
