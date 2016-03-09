@@ -1,4 +1,4 @@
-# Pixel-Hero (Personnal game project)
+# The Last Dungeoneer (Personnal game project)
 
 ## Current Status
 In developpement (Build Pre-Alpha 6 available in builds section)
