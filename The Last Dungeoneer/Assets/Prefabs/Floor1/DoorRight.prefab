@@ -27,6 +27,8 @@ GameObject:
   - 212: {fileID: 21245950}
   - 61: {fileID: 6147152}
   - 61: {fileID: 6198830}
+  - 61: {fileID: 6139108}
+  - 114: {fileID: 11476200}
   m_Layer: 0
   m_Name: DoorRight
   m_TagString: Untagged
@@ -41,7 +43,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 198560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 99.33933, y: 83.31124, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 458560}
@@ -59,6 +61,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 446280}
   m_RootOrder: 0
+--- !u!61 &6139108
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198560}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.75, y: 0.8}
 --- !u!61 &6147152
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -87,6 +103,18 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.7}
   serializedVersion: 2
   m_Size: {x: 2, y: 0.6}
+--- !u!114 &11476200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8175aea8652e6a94b9ecb59ccdca44cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardinalite: 1
 --- !u!212 &21201802
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -27,6 +27,8 @@ GameObject:
   - 212: {fileID: 21261050}
   - 61: {fileID: 6138648}
   - 61: {fileID: 6141732}
+  - 61: {fileID: 6175066}
+  - 114: {fileID: 11458190}
   m_Layer: 0
   m_Name: DoorBottom
   m_TagString: Untagged
@@ -87,6 +89,32 @@ BoxCollider2D:
   m_Offset: {x: 0.7, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.6, y: 2}
+--- !u!61 &6175066
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157010}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 0.75}
+--- !u!114 &11458190
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8175aea8652e6a94b9ecb59ccdca44cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardinalite: 2
 --- !u!212 &21261050
 SpriteRenderer:
   m_ObjectHideFlags: 1

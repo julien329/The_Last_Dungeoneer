@@ -27,6 +27,8 @@ GameObject:
   - 212: {fileID: 21272926}
   - 61: {fileID: 6173176}
   - 61: {fileID: 6133220}
+  - 61: {fileID: 6188472}
+  - 114: {fileID: 11424788}
   m_Layer: 0
   m_Name: DoorTop
   m_TagString: Untagged
@@ -41,7 +43,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 99.22971, y: 82.14917, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 477870}
@@ -87,6 +89,32 @@ BoxCollider2D:
   m_Offset: {x: -0.7, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.6, y: 2}
+--- !u!61 &6188472
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181708}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 0.75}
+--- !u!114 &11424788
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8175aea8652e6a94b9ecb59ccdca44cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardinalite: 0
 --- !u!212 &21242788
 SpriteRenderer:
   m_ObjectHideFlags: 1

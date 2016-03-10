@@ -41,7 +41,7 @@ public class StartingRoom : Room {
     // Player charracter spawnpoint
     private void placeCharacter(ref string tile, int j)
     {
-        if (j == roomWidth / 2 && tabTiles.Count == (roomHeight / 2) - 1)
+        if (j == roomWidth / 2 && tabTiles.Count == (roomHeight / 2))
             tile = "Hero";
     }
 }

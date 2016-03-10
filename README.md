@@ -1,7 +1,7 @@
 # The Last Dungeoneer (Personnal game project)
 
 ## Current Status
-In developpement (Build Pre-Alpha 6 available in builds section)
+In developpement (Build Pre-Alpha 9 available in builds section)
 
 ## Description
 * A 2D top down RPG style game, where you go through a random generated dungeon, floor by floor.
